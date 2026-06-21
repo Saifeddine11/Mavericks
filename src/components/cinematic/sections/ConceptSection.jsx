@@ -85,7 +85,7 @@ export default function ConceptSection() {
       id="concept"
       ref={sectionRef}
       data-shot
-      className="relative bg-dark-red text-stone-brand"
+      className="relative overflow-x-clip bg-dark-red text-stone-brand"
       aria-label={t('cinematic.concept.aria')}
     >
       <div ref={innerRef} className="relative h-[100svh] w-full overflow-hidden lg:h-screen">

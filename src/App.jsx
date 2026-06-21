@@ -18,8 +18,10 @@
  * the tree and are independent of which chrome is shown.
  */
 
+import { useEffect } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import clsx from 'clsx';
 
 import Header from '@/components/layout/Header';
 import CinematicChrome from '@/components/cinematic/CinematicChrome';
@@ -67,11 +69,16 @@ export default function App() {
   const location = useLocation();
   const onHome = isHomePath(location.pathname);
 
+  useEffect(() => {
+    document.body.classList.toggle('app-light', !onHome);
+    return () => document.body.classList.remove('app-light');
+  }, [onHome]);
+
   const content = (
     <>
       {onHome ? <CinematicChrome /> : <Header />}
 
-      <main className="flex-1">
+      <main className={clsx('flex-1', onHome ? 'bg-dark-red' : 'bg-stone-brand')}>
         <AnimatePresence mode="wait" initial={false}>
           <PageTransition key={location.pathname}>
             <Routes location={location}>
@@ -98,7 +105,12 @@ export default function App() {
   );
 
   return (
-    <div className="flex min-h-screen flex-col overflow-x-hidden bg-stone-brand text-dark-red">
+    <div
+      className={clsx(
+        'flex min-h-[100svh] flex-col overflow-x-clip',
+        onHome ? 'bg-dark-red text-stone-brand' : 'bg-stone-brand text-dark-red',
+      )}
+    >
       {onHome ? <CinematicProvider>{content}</CinematicProvider> : content}
     </div>
   );

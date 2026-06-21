@@ -8,25 +8,40 @@
 
 @layer base {
   :root {
-    color-scheme: light;
-    --color-text: theme(colors.dark-red);
-    --color-text-muted: theme(colors.graphite);
-    --color-bg: theme(colors.stone-brand);
+    color-scheme: dark;
+    --color-text: theme(colors.stone-brand);
+    --color-text-muted: theme(colors.grey-orange);
+    --color-bg: theme(colors.dark-red);
+    --app-bg: theme(colors.dark-red);
   }
 
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    overflow-x: hidden;
+    overflow-x: clip;
+    background-color: #270707;
   }
 
   body {
-    @apply bg-stone-brand font-body text-dark-red;
+    @apply font-body;
     background-color: var(--color-bg);
-    min-height: 100vh;
-    min-height: 100dvh;
-    overflow-x: hidden;
+    color: var(--color-text);
+    min-height: 100svh;
+    overflow-x: clip;
+  }
+
+  body.app-light {
+    --color-text: theme(colors.dark-red);
+    --color-text-muted: theme(colors.graphite);
+    --color-bg: theme(colors.stone-brand);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+  }
+
+  #root {
+    min-height: 100svh;
+    background-color: inherit;
   }
 
   h1,
@@ -78,6 +93,17 @@
     @apply object-cover;
   }
 
+  /* Immersive full-screen sections — stable mobile viewport (iOS Safari). */
+  .fullscreen-section {
+    min-height: 100svh;
+    width: 100%;
+  }
+
+  /* GSAP ScrollTrigger pin spacers — prevent light gaps between pinned sections. */
+  .pin-spacer {
+    background-color: #270707;
+  }
+
   /* ScrollScrubHeroV2 — responsive media + safe areas */
   .hero-v2-media {
     @apply absolute inset-0 h-full w-full object-cover;
@@ -97,6 +123,12 @@
 
   .hero-v2-safe-bottom {
     padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  @media (max-width: 767px) {
+    .hero-v2-safe-bottom {
+      padding-bottom: max(1.5rem, calc(env(safe-area-inset-bottom, 0px) + 0.75rem));
+    }
   }
 
   .hero-v2-title-primary {
@@ -199,25 +231,56 @@
   }
 }
 
-/* Cinematic menu — Amali-style left glass panel */
+/* Cinematic menu — Amali-style glass panel */
 .cinematic-menu-backdrop {
-  background: rgba(12, 8, 7, 0.42);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background: rgba(12, 8, 7, 0.38);
+  -webkit-backdrop-filter: blur(0px);
+  backdrop-filter: blur(0px);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    backdrop-filter 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+    -webkit-backdrop-filter 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cinematic-menu-backdrop.is-open {
+  background: rgba(12, 8, 7, 0.52);
+  -webkit-backdrop-filter: blur(20px);
+  backdrop-filter: blur(20px);
 }
 
 .cinematic-menu-panel {
-  left: 12px;
-  top: 12px;
-  width: calc(100vw - 24px);
-  height: calc(100dvh - 24px);
-  max-height: calc(100svh - 24px);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  background: linear-gradient(135deg, rgba(58, 37, 32, 0.78), rgba(34, 22, 20, 0.76));
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+  left: 16px;
+  right: 16px;
+  width: auto;
+  top: max(16px, env(safe-area-inset-top, 0px));
+  bottom: max(16px, env(safe-area-inset-bottom, 0px));
+  height: auto;
+  max-height: none;
+  border-radius: 32px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: linear-gradient(145deg, rgba(48, 28, 24, 0.82), rgba(28, 16, 14, 0.88));
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow:
+    0 24px 80px rgba(0, 0, 0, 0.42),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transform-origin: center top;
+  will-change: transform, opacity;
+}
+
+.cinematic-menu-scroll {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cinematic-menu-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+body.menu-open {
+  overflow: hidden;
+  touch-action: none;
 }
 
 .cinematic-menu-link {
@@ -233,13 +296,24 @@
 }
 
 @media (min-width: 768px) {
+  .cinematic-menu-backdrop.is-open {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+
   .cinematic-menu-panel {
     left: 32px;
-    top: 16px;
+    right: auto;
     width: min(38vw, 620px);
-    height: calc(100dvh - 32px);
-    max-height: calc(100svh - 32px);
+    top: max(16px, env(safe-area-inset-top, 0px));
+    bottom: max(16px, env(safe-area-inset-bottom, 0px));
+    height: auto;
     border-radius: 28px;
+    transform-origin: left center;
+  }
+
+  body.menu-open {
+    touch-action: auto;
   }
 
   .cinematic-menu-link {

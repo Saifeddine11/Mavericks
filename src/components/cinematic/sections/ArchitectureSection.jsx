@@ -328,7 +328,7 @@ export default function ArchitectureSection() {
       ref={sectionRef}
       data-shot
       data-section-indicator-trigger
-      className="relative overflow-x-clip bg-dark-red text-stone-brand"
+      className="relative h-[100svh] w-full overflow-x-clip bg-dark-red text-stone-brand"
       aria-label={t('cinematic.architecture.aria')}
     >
       <div ref={innerRef} className="relative h-[100svh] w-full overflow-hidden lg:h-screen">

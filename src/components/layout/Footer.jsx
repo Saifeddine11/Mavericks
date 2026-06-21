@@ -13,7 +13,10 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="relative overflow-hidden bg-dark-red text-stone-brand">
+    <footer
+      id="contact"
+      className="relative overflow-hidden bg-dark-red pb-[env(safe-area-inset-bottom,0px)] text-stone-brand"
+    >
       {/* Premium transition — transparent → dark red, no light band */}
       <div
         aria-hidden="true"
@@ -25,7 +28,7 @@ export default function Footer() {
       />
 
       <div>
-        <div className="container-editorial pb-20 pt-14 md:pt-16">
+        <div className="container-editorial pb-[max(5rem,calc(3rem+env(safe-area-inset-bottom,0px)))] pt-14 md:pt-16">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-4">
               <p className="font-label text-[11px] uppercase tracking-[0.28em] text-champagne/85">

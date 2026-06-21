@@ -42,7 +42,7 @@ function StaticBrandSignature({ lineOff, lineMarket, tagline, ariaLabel }) {
   return (
     <section
       id="brand-signature"
-      className="relative overflow-x-hidden bg-dark-red"
+      className="relative overflow-x-clip bg-dark-red"
       aria-label={ariaLabel}
     >
       <div className="grid min-h-[100svh] place-items-center px-4">
@@ -228,7 +228,7 @@ export default function BrandSignatureSection() {
     <section
       id="brand-signature"
       ref={sectionRef}
-      className="relative h-[100svh] overflow-hidden bg-dark-red"
+      className="relative h-[100svh] min-h-[100svh] overflow-x-clip overflow-hidden bg-dark-red"
       aria-label={ariaLabel}
     >
       <div ref={videoRevealRef} className="absolute inset-0 z-10">

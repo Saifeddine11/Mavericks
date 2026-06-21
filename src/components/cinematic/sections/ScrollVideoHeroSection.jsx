@@ -326,7 +326,7 @@ export default function ScrollVideoHeroSection() {
         id="hero"
         data-shot
         aria-label="Mavericks — immobilier de prestige à Marrakech"
-        className="relative w-full bg-dark-red text-stone-brand"
+        className="relative w-full overflow-x-clip bg-dark-red text-stone-brand"
       >
         <div
           className="relative h-[100svh] w-full overflow-hidden"
@@ -366,12 +366,12 @@ export default function ScrollVideoHeroSection() {
       id="hero"
       data-shot
       aria-label="Mavericks — immobilier de prestige à Marrakech"
-      className="relative w-full bg-dark-red text-stone-brand"
+      className="relative w-full overflow-x-clip bg-dark-red text-stone-brand"
       style={{ height: `${heroV2Config.pinScrollDistanceMobile * 100}svh` }}
     >
       <div
         ref={stageRef}
-        className="relative h-[100svh] w-full overflow-hidden md:h-screen"
+        className="relative h-[100svh] min-h-[100svh] w-full overflow-hidden md:h-screen"
       >
         {videoOk ? (
           <video

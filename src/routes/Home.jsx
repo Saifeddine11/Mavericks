@@ -15,13 +15,13 @@ import ConceptSection from '@/components/cinematic/sections/ConceptSection';
 
 export default function Home() {
   return (
-    <>
+    <div className="overflow-x-clip bg-dark-red">
       <Seo />
       <ScrollVideoHeroSection />
       <ArchitectureSection />
       <SelectionGallerySection />
       <BrandSignatureSection />
       <ConceptSection />
-    </>
+    </div>
   );
 }

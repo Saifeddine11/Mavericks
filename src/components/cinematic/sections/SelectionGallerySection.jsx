@@ -17,7 +17,7 @@ export default function SelectionGallerySection() {
   return (
     <section
       id="territories"
-      className="relative overflow-x-hidden bg-dark-red"
+      className="relative overflow-x-clip bg-dark-red"
       aria-label={t('cinematic.territories.ariaLabel')}
     >
       <div className="border-b border-white/[0.06] px-6 pb-6 pt-10 md:px-10 md:pb-8 md:pt-14">
