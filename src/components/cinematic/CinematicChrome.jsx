@@ -10,6 +10,9 @@ import ContentPopup from './shared/ContentPopup';
 import SectionIndicator from './shared/SectionIndicator';
 import { getLangFromPath } from '@/i18n/routing';
 import { DEFAULT_LANGUAGE } from '@/i18n';
+import { site } from '@/config/site';
+
+const MOBILE_PHONE_HREF = 'tel:+212000000000';
 
 /** Expandable groups map to homepage anchors — no new routes */
 const MENU_GROUPS = [
@@ -48,31 +51,42 @@ const MENU_GROUPS = [
   { id: 'contact', href: '#contact', expandable: false },
 ];
 
-function MenuLinesIcon({ className }) {
+function MenuToggleIcon({ open, className }) {
   return (
-    <span className={clsx('flex flex-col gap-[5px]', className)} aria-hidden="true">
-      <span className="block h-px w-4 bg-current" />
-      <span className="block h-px w-4 bg-current" />
+    <span className={clsx('relative block size-4', className)} aria-hidden="true">
+      <span
+        className={clsx(
+          'absolute left-1/2 top-1/2 block h-px w-4 -translate-x-1/2 bg-current transition-transform duration-300 ease-out',
+          open ? 'rotate-45' : '-translate-y-[3px] rotate-0',
+        )}
+      />
+      <span
+        className={clsx(
+          'absolute left-1/2 top-1/2 block h-px w-4 -translate-x-1/2 bg-current transition-transform duration-300 ease-out',
+          open ? '-rotate-45' : 'translate-y-[3px] rotate-0',
+        )}
+      />
     </span>
   );
 }
 
-function ContactIcon({ className }) {
+function PhoneIcon({ className }) {
   return (
     <svg
       className={className}
-      width="14"
-      height="14"
+      width="17"
+      height="17"
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
     >
       <path
-        d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z"
+        d="M8.2 10.6 6.4 12.4c-.8.8-2.1 1-3 .5-1.2-.6-2.4-1.5-3.4-2.5C-.9 8.4-.1 6.2 1.7 4.4L3.5 2.6M15.8 13.4l1.8 1.8c.8.8 2.1 1 3 .5 1.2-.6 2.4-1.5 3.4-2.5.9-1 1.8-2.2 2.4-3.4.5-.9.3-2.2-.5-3l-1.8-1.8M11.5 5.5l2.2-2.2c.8-.8 2.1-1 3-.5 1.2.6 2.4 1.5 3.4 2.5.9 1 1.8 2.2 2.4 3.4.5.9.3 2.2-.5 3l-2.2 2.2"
         stroke="currentColor"
-        strokeWidth="1.4"
+        strokeWidth="1.45"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
-      <path d="m5 7 7 5 7-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
     </svg>
   );
 }
@@ -317,46 +331,52 @@ export default function CinematicChrome() {
         aria-hidden="true"
       />
 
-      {/* ── Mobile header (Amali-style floating controls) ── */}
+      {/* ── Mobile header (Amali-style floating pill) ── */}
       <nav
-        className={clsx(
-          'pointer-events-none fixed inset-x-0 top-0 z-[52] md:hidden',
-          'px-4 pt-[max(0.75rem,env(safe-area-inset-top,0px))]',
-        )}
+        className="pointer-events-none fixed inset-x-0 top-0 z-[53] md:hidden"
         aria-label={t('chrome.menu')}
       >
         <div
           aria-hidden="true"
           className={clsx(
-            'pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent',
+            'pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b to-transparent transition-opacity duration-300',
+            menuOpen ? 'opacity-0' : 'opacity-100',
             isLight ? 'from-dark-red/50 via-dark-red/20' : 'from-stone-brand/70 via-stone-brand/30',
           )}
         />
+
         <div
           className={clsx(
-            'relative flex items-center justify-between transition-opacity duration-300',
-            menuOpen && 'pointer-events-none opacity-0',
+            'pointer-events-auto px-4 pt-[max(0.75rem,env(safe-area-inset-top,0px))] transition-opacity duration-300',
+            menuOpen ? 'opacity-0' : 'opacity-100',
+            mounted ? 'translate-y-0' : '-translate-y-2 opacity-0',
           )}
         >
           <LogoLink lang={lang} isLight={isLight} mounted={mounted} />
-          <div className={headerPillClass}>
-            <a
-              href="#contact"
-              aria-label={t('chrome.enquire')}
-              className="flex size-10 shrink-0 items-center justify-center bg-champagne text-dark-red transition-colors hover:bg-champagne-light"
-            >
-              <ContactIcon />
-            </a>
-            <button
-              type="button"
-              onClick={toggleMenu}
-              aria-expanded={menuOpen}
-              aria-label={t('chrome.menu')}
-              className={clsx('flex size-10 items-center justify-center', controlTone)}
-            >
-              <MenuLinesIcon />
-            </button>
-          </div>
+        </div>
+
+        <div
+          className={clsx(
+            'mobile-chrome-pill pointer-events-auto',
+            mounted ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0',
+          )}
+        >
+          <a
+            href={MOBILE_PHONE_HREF}
+            aria-label={site.contact.phone}
+            className="mobile-chrome-pill__phone"
+          >
+            <PhoneIcon />
+          </a>
+          <button
+            type="button"
+            onClick={menuOpen ? closeMenu : toggleMenu}
+            aria-expanded={menuOpen}
+            aria-label={menuOpen ? t('nav.close') : t('chrome.menu')}
+            className="mobile-chrome-pill__menu"
+          >
+            <MenuToggleIcon open={menuOpen} />
+          </button>
         </div>
       </nav>
 
@@ -448,25 +468,11 @@ export default function CinematicChrome() {
         aria-modal="true"
         aria-label={t('chrome.menu')}
       >
-        {/* Mobile panel top controls — inside glass panel like Amali */}
-        <div className="flex shrink-0 items-center justify-end gap-2 px-5 pb-2 pt-[max(1rem,env(safe-area-inset-top,0px))] md:hidden">
-          <a
-            href="#contact"
-            onClick={handleNavigate}
-            aria-label={t('chrome.enquire')}
-            className="flex size-11 items-center justify-center rounded-full bg-champagne text-dark-red transition-colors hover:bg-champagne-light"
-          >
-            <ContactIcon />
-          </a>
-          <button
-            type="button"
-            onClick={closeMenu}
-            aria-label={t('nav.close')}
-            className="flex size-11 items-center justify-center rounded-full border border-white/15 text-stone-brand transition-colors hover:border-white/25"
-          >
-            <MenuLinesIcon />
-          </button>
-        </div>
+        {/* Mobile top clearance for fixed pill — no duplicate controls */}
+        <div
+          className="shrink-0 pt-[calc(env(safe-area-inset-top,0px)+5.5rem)] md:hidden"
+          aria-hidden="true"
+        />
 
         <div
           className="hidden shrink-0 border-b border-white/[0.1] px-8 pb-5 pt-24 md:block"

@@ -283,6 +283,63 @@ body.menu-open {
   touch-action: none;
 }
 
+/* Mobile chrome — Amali-style floating call + menu pill */
+.mobile-chrome-pill {
+  position: fixed;
+  top: calc(env(safe-area-inset-top, 0px) + 1rem);
+  right: clamp(1rem, 5vw, 1.5rem);
+  z-index: 53;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  height: 68px;
+  padding: 0.45rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(39, 7, 7, 0.52);
+  -webkit-backdrop-filter: blur(18px);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.28);
+  transition:
+    opacity 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.mobile-chrome-pill__phone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  background: theme(colors.champagne);
+  color: theme(colors.dark-red);
+  transition: background-color 0.3s ease;
+}
+
+.mobile-chrome-pill__phone:hover {
+  background: theme(colors.champagne-light);
+}
+
+.mobile-chrome-pill__menu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 999px;
+  color: theme(colors.stone-brand);
+  transition: color 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .mobile-chrome-pill {
+    display: none;
+  }
+}
+
 .cinematic-menu-link {
   font-size: clamp(1.75rem, 4.2vw, 2.75rem);
   letter-spacing: 0.1em;

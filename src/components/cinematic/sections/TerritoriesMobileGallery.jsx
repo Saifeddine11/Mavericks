@@ -3,38 +3,92 @@
  * Same active/inactive concept as desktop: clear active, grayscale inactive.
  */
 
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 
 const CARD_RADIUS = '1.25rem';
 const EASING = 'cubic-bezier(.1, .7, 0, 1)';
-const TRANSITION_MS = 900;
+const HEIGHT_TRANSITION_MS = 650;
+const FILTER_TRANSITION_MS = 450;
+const SCROLL_DELAY_MS = 90;
+/** Floating pill + safe-area breathing room (~90–130px target zone) */
+const MOBILE_SCROLL_OFFSET = 116;
 
 function cardHeights(isActive) {
   return isActive
-    ? 'clamp(400px, 118vw, 480px)'
-    : 'clamp(240px, 72vw, 280px)';
+    ? 'clamp(430px, 66svh, 560px)'
+    : 'clamp(240px, 42svh, 320px)';
 }
 
 export default function TerritoriesMobileGallery({ items, backgroundColor }) {
   const [activeIndex, setActiveIndex] = useState(null);
+  const cardRefs = useRef([]);
+  const scrollTimeoutRef = useRef(null);
+  const rafRef = useRef(null);
+
+  const clearPendingScroll = useCallback(() => {
+    if (scrollTimeoutRef.current) {
+      window.clearTimeout(scrollTimeoutRef.current);
+      scrollTimeoutRef.current = null;
+    }
+    if (rafRef.current) {
+      window.cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+  }, []);
+
+  const scrollToCard = useCallback((index) => {
+    const card = cardRefs.current[index];
+    if (!card) return;
+
+    const rect = card.getBoundingClientRect();
+    const absoluteTop = window.scrollY + rect.top;
+    const target = Math.max(0, absoluteTop - MOBILE_SCROLL_OFFSET);
+
+    window.scrollTo({
+      top: target,
+      behavior: 'smooth',
+    });
+  }, []);
+
+  const scheduleScrollToCard = useCallback(
+    (index) => {
+      clearPendingScroll();
+      rafRef.current = window.requestAnimationFrame(() => {
+        scrollTimeoutRef.current = window.setTimeout(() => {
+          scrollToCard(index);
+        }, SCROLL_DELAY_MS);
+      });
+    },
+    [clearPendingScroll, scrollToCard],
+  );
+
+  useEffect(() => () => clearPendingScroll(), [clearPendingScroll]);
 
   const handleTap = (index) => {
-    setActiveIndex((current) => (current === index ? null : index));
+    const willActivate = activeIndex !== index;
+    clearPendingScroll();
+    setActiveIndex(willActivate ? index : null);
+    if (willActivate) {
+      scheduleScrollToCard(index);
+    }
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-full flex-col items-center gap-3 py-2 sm:gap-4">
+    <div className="mx-auto flex w-full max-w-full flex-col items-center gap-3 py-2 pb-[calc(4rem+env(safe-area-inset-bottom,0px))] sm:gap-4">
       {items.map((entry, index) => {
         const isActive = activeIndex === index;
 
         return (
           <button
             key={`${entry.image}-${index}`}
+            ref={(el) => {
+              cardRefs.current[index] = el;
+            }}
             type="button"
-            className="relative w-[min(88vw,100%)] max-w-full overflow-hidden rounded-[1.25rem] shadow-lg outline-none transition-[height] duration-[900ms] will-change-[height,filter] focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(184,138,90,0.55)] focus-visible:outline-offset-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="relative w-[min(88vw,100%)] max-w-full overflow-hidden rounded-[1.25rem] shadow-lg outline-none will-change-[height,filter] focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(184,138,90,0.55)] focus-visible:outline-offset-4 focus-visible:ring-0 focus-visible:ring-offset-0"
             style={{
               height: cardHeights(isActive),
-              transitionTimingFunction: EASING,
+              transition: `height ${HEIGHT_TRANSITION_MS}ms ${EASING}, filter ${FILTER_TRANSITION_MS}ms ${EASING}`,
               borderRadius: CARD_RADIUS,
             }}
             onClick={() => handleTap(index)}
@@ -47,7 +101,7 @@ export default function TerritoriesMobileGallery({ items, backgroundColor }) {
                 backgroundImage: `url(${entry.image})`,
                 backgroundColor,
                 filter: isActive ? 'none' : 'grayscale(1) brightness(0.5)',
-                transition: `filter ${TRANSITION_MS}ms ${EASING}`,
+                transition: `filter ${FILTER_TRANSITION_MS}ms ${EASING}`,
               }}
               aria-hidden="true"
             />

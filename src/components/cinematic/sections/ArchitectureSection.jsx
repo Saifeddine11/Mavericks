@@ -23,7 +23,7 @@ const BOTTOM_VIGNETTE =
   'linear-gradient(180deg, transparent 42%, rgba(39,7,7,0.22) 68%, rgba(39,7,7,0.52) 100%)';
 
 const BOTTOM_VIGNETTE_MOBILE =
-  'linear-gradient(180deg, transparent 48%, rgba(39,7,7,0.18) 72%, rgba(39,7,7,0.48) 100%)';
+  'linear-gradient(180deg, transparent 55%, rgba(39,7,7,0.12) 78%, rgba(39,7,7,0.32) 100%)';
 
 const TEXT_RAIL_VEIL =
   'linear-gradient(to top, rgba(39,7,7,0.48), rgba(39,7,7,0.16), transparent)';
@@ -31,8 +31,15 @@ const TEXT_RAIL_VEIL =
 /** Opening occupies first segment — red cinematic emerge */
 const OPENING_END = 0.15;
 
-/** Final Riad hold — extra pinned scroll with no visual change (~1s feel) */
+/** Final Riad hold — extra pinned scroll with no visual change */
 const RIAD_HOLD = 0.06;
+const RIAD_HOLD_MOBILE = 0.04;
+
+/** Mobile ScrollTrigger tuning (phones only) */
+const MOBILE_ARCH_SCROLL = {
+  end: '+=180%',
+  scrub: 0.4,
+};
 
 const OPENING_IMAGE_OPACITY = 1;
 const OPENING_IMAGE_SCALE = 1.04;
@@ -190,8 +197,8 @@ function addOpeningReveal(tl, images, redRevealRef, veilRef, isCompact) {
  * Villa @ OPENING_END, Appartement @ mid, Riad @ pre-hold, then stable Riad hold.
  */
 function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef, options = {}) {
-  const { mobileVeils, isMobile = false } = options;
-  const motionSpan = 1 - OPENING_END - RIAD_HOLD;
+  const { mobileVeils, isMobile = false, riadHold = RIAD_HOLD } = options;
+  const motionSpan = 1 - OPENING_END - riadHold;
   const segment = motionSpan / 2;
   const villaAt = OPENING_END;
   const appartementAt = OPENING_END + segment;
@@ -202,7 +209,7 @@ function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef
   tl.set(rail, { x: positions[0] }, villaAt);
   applyImageState(tl, images, 0, villaAt, 0.01);
   words.forEach((word, index) => {
-    if (word) tl.set(word, index === 0 ? wordActive() : wordInactive(), villaAt);
+    if (word) tl.set(word, index === 0 ? wordActive() : wordInactive(isMobile), villaAt);
   });
   if (veilRef?.current && mobileVeils) {
     tl.to(veilRef.current, { opacity: 0.22, ease: 'none', duration: 0.12 }, villaAt);
@@ -232,7 +239,7 @@ function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef
 
   tl.addLabel('riadHold', riadHoldAt);
   tl.addLabel('final', riadHoldAt);
-  tl.to({}, { ease: 'none', duration: RIAD_HOLD }, riadAt);
+  tl.to({}, { ease: 'none', duration: riadHold }, riadAt);
 }
 
 export default function ArchitectureSection() {
@@ -290,8 +297,8 @@ export default function ArchitectureSection() {
         gsap.set(rail, { x: positions[0] ?? 0 });
         gsap.set(words, wordInactive(isMobile));
 
-        const end = isMobile ? '+=165%' : isCompact ? '+=190%' : '+=240%';
-        const scrub = isMobile ? 0.36 : isCompact ? 0.42 : 0.5;
+        const end = isMobile ? MOBILE_ARCH_SCROLL.end : isCompact ? '+=190%' : '+=240%';
+        const scrub = isMobile ? MOBILE_ARCH_SCROLL.scrub : isCompact ? 0.42 : 0.5;
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -302,7 +309,7 @@ export default function ArchitectureSection() {
             scrub,
             anticipatePin: 1,
             invalidateOnRefresh: true,
-            snap: isCompact ? false : ARCH_SNAP,
+            snap: isMobile || isCompact ? false : ARCH_SNAP,
           },
         });
 
@@ -310,6 +317,7 @@ export default function ArchitectureSection() {
         buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef, {
           mobileVeils: isCompact,
           isMobile,
+          riadHold: isMobile ? RIAD_HOLD_MOBILE : RIAD_HOLD,
         });
 
         tl.addLabel('end', 1);
@@ -328,11 +336,14 @@ export default function ArchitectureSection() {
       ref={sectionRef}
       data-shot
       data-section-indicator-trigger
-      className="relative h-[100svh] w-full overflow-x-clip bg-dark-red text-stone-brand"
+      className="relative w-full overflow-x-clip bg-dark-red text-stone-brand"
       aria-label={t('cinematic.architecture.aria')}
     >
-      <div ref={innerRef} className="relative h-[100svh] w-full overflow-hidden lg:h-screen">
-        <div className="absolute inset-0">
+      <div
+        ref={innerRef}
+        className="relative h-[100svh] min-h-[100svh] w-full overflow-hidden lg:h-screen"
+      >
+        <div className="absolute inset-0 min-h-[100svh] lg:min-h-0">
           {PROPERTY_IMAGES.map((item, index) => (
             <div
               key={item.key}
@@ -390,7 +401,7 @@ export default function ArchitectureSection() {
 
         <div
           ref={copyRef}
-          className="absolute left-6 top-[16%] z-20 max-w-[18rem] md:left-12 md:top-1/2 md:max-w-md md:-translate-y-1/2"
+          className="absolute left-6 top-[max(5.25rem,calc(env(safe-area-inset-top)+4.25rem))] z-20 max-w-[18rem] md:left-12 md:top-1/2 md:max-w-md md:-translate-y-1/2"
         >
           <p
             className="mb-3 font-label text-[0.6875rem] uppercase tracking-[0.24em] text-champagne"
@@ -409,19 +420,19 @@ export default function ArchitectureSection() {
           </h2>
         </div>
 
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] overflow-hidden">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[6] overflow-hidden pb-[max(0px,env(safe-area-inset-bottom,0px))]">
           <div
-            className="absolute inset-x-0 bottom-0 h-[46%] md:h-[42%]"
+            className="absolute inset-x-0 bottom-0 h-[36%] md:h-[42%]"
             style={{ background: TEXT_RAIL_VEIL }}
             aria-hidden="true"
           />
           <div
             ref={textMaskRef}
-            className="relative h-[clamp(5rem,30vw,20rem)] w-full overflow-hidden"
+            className="relative h-[clamp(6.5rem,26vw,9.5rem)] w-full overflow-hidden md:h-[clamp(5rem,30vw,20rem)]"
           >
             <div
               ref={textRailRef}
-              className="absolute bottom-[-0.4em] left-0 flex w-max items-end gap-[clamp(2rem,8vw,5rem)] whitespace-nowrap will-change-transform md:gap-[clamp(5rem,10vw,12rem)]"
+              className="absolute bottom-0 left-0 flex w-max items-end gap-[clamp(1.75rem,7vw,4rem)] whitespace-nowrap will-change-transform md:bottom-[-0.4em] md:gap-[clamp(5rem,10vw,12rem)]"
             >
               {PROPERTY_KEYS.map((key, index) => (
                 <span
@@ -429,7 +440,7 @@ export default function ArchitectureSection() {
                   ref={(el) => {
                     wordRefs.current[index] = el;
                   }}
-                  className="font-editorial text-[clamp(4rem,24vw,7rem)] font-light italic leading-[0.8] tracking-[-0.06em] will-change-[opacity] md:text-[clamp(7rem,18vw,20rem)] md:will-change-[opacity,filter]"
+                  className="font-editorial text-[clamp(4.5rem,22vw,8rem)] font-light italic leading-[0.82] tracking-[-0.06em] will-change-[opacity] md:text-[clamp(7rem,18vw,20rem)] md:leading-[0.8] md:will-change-[opacity,filter]"
                   style={wordInactive()}
                 >
                   {t(`cinematic.architecture.words.${key}`)}
