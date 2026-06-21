@@ -17,7 +17,7 @@ export default function Footer() {
       {/* Premium transition — transparent → dark red, no light band */}
       <div
         aria-hidden="true"
-        className="pointer-events-none h-[12vh] min-h-[88px] w-full"
+        className="pointer-events-none h-[10vh] min-h-[64px] w-full md:min-h-[88px] md:h-[12vh]"
         style={{
           background:
             'linear-gradient(180deg, rgba(39, 7, 7, 0) 0%, rgba(39, 7, 7, 0.52) 44%, #270707 100%)',

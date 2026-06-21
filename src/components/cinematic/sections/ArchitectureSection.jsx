@@ -67,9 +67,20 @@ const IMAGE_INACTIVE = Object.freeze({
 });
 
 const wordActive = () => ({ ...WORD_ACTIVE });
-const wordInactive = () => ({ ...WORD_INACTIVE });
+const wordInactive = (isMobile = false) =>
+  isMobile
+    ? {
+        opacity: 0.32,
+        color: '#D6C0B1',
+        filter: 'none',
+        textShadow: '0 0 0 transparent',
+      }
+    : { ...WORD_INACTIVE };
 const imageActive = () => ({ ...IMAGE_ACTIVE });
-const imageInactive = () => ({ ...IMAGE_INACTIVE });
+const imageInactive = (isMobile = false) =>
+  isMobile
+    ? { opacity: 0, scale: 1.02, filter: 'none' }
+    : { ...IMAGE_INACTIVE };
 
 /** Snap to villa / appartement / riad resting points (desktop only) */
 const ARCH_SNAP = {
@@ -113,21 +124,21 @@ function measureRailPositions(rail, words, mask) {
   });
 }
 
-function applyWordState(tl, words, activeIndex, at, duration) {
+function applyWordState(tl, words, activeIndex, at, duration, isMobile = false) {
   words.forEach((word, index) => {
     if (!word) return;
     tl.to(
       word,
-      { ...(index === activeIndex ? wordActive() : wordInactive()), ease: 'none', duration },
+      { ...(index === activeIndex ? wordActive() : wordInactive(isMobile)), ease: 'none', duration },
       at,
     );
   });
 }
 
-function applyImageState(tl, images, activeIndex, at, duration) {
+function applyImageState(tl, images, activeIndex, at, duration, isMobile = false) {
   images.forEach((image, index) => {
     if (!image) return;
-    const target = index === activeIndex ? imageActive() : imageInactive();
+    const target = index === activeIndex ? imageActive() : imageInactive(isMobile);
     if (duration <= 0.02) {
       tl.set(image, target, at);
     } else {
@@ -136,12 +147,12 @@ function applyImageState(tl, images, activeIndex, at, duration) {
   });
 }
 
-function transitionPropertyState(tl, images, words, rail, positions, toIndex, at, duration) {
+function transitionPropertyState(tl, images, words, rail, positions, toIndex, at, duration, isMobile = false) {
   if (rail && positions[toIndex] !== undefined) {
     tl.to(rail, { x: positions[toIndex], ease: 'none', duration }, at);
   }
-  applyImageState(tl, images, toIndex, at, duration);
-  applyWordState(tl, words, toIndex, at, duration);
+  applyImageState(tl, images, toIndex, at, duration, isMobile);
+  applyWordState(tl, words, toIndex, at, duration, isMobile);
 }
 
 /** Red cinematic opening — soft burgundy veil */
@@ -179,7 +190,7 @@ function addOpeningReveal(tl, images, redRevealRef, veilRef, isCompact) {
  * Villa @ OPENING_END, Appartement @ mid, Riad @ pre-hold, then stable Riad hold.
  */
 function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef, options = {}) {
-  const { mobileVeils } = options;
+  const { mobileVeils, isMobile = false } = options;
   const motionSpan = 1 - OPENING_END - RIAD_HOLD;
   const segment = motionSpan / 2;
   const villaAt = OPENING_END;
@@ -198,13 +209,13 @@ function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef
   }
 
   tl.addLabel('appartement', appartementAt);
-  transitionPropertyState(tl, images, words, rail, positions, 1, villaAt, segment);
+  transitionPropertyState(tl, images, words, rail, positions, 1, villaAt, segment, isMobile);
   if (veilRef?.current && mobileVeils) {
     tl.to(veilRef.current, { opacity: 0.14, ease: 'none', duration: segment * 0.5 }, appartementAt);
   }
 
   tl.addLabel('riad', riadAt);
-  transitionPropertyState(tl, images, words, rail, positions, 2, appartementAt, segment);
+  transitionPropertyState(tl, images, words, rail, positions, 2, appartementAt, segment, isMobile);
   if (veilRef?.current && mobileVeils) {
     tl.to(veilRef.current, { opacity: 0.1, ease: 'none', duration: segment * 0.5 }, riadAt);
   }
@@ -213,10 +224,10 @@ function buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef
   tl.set(words[2], wordActive(), riadAt);
   tl.set(rail, { x: positions[2] }, riadAt);
   images.forEach((image, index) => {
-    if (index !== 2 && image) tl.set(image, imageInactive(), riadAt);
+    if (index !== 2 && image) tl.set(image, imageInactive(isMobile), riadAt);
   });
   words.forEach((word, index) => {
-    if (index !== 2 && word) tl.set(word, wordInactive(), riadAt);
+    if (index !== 2 && word) tl.set(word, wordInactive(isMobile), riadAt);
   });
 
   tl.addLabel('riadHold', riadHoldAt);
@@ -246,7 +257,7 @@ export default function ArchitectureSection() {
       const inner = innerRef.current;
       if (!section || !inner) return;
 
-      return cinematicMatchMedia(({ isReduce, isCompact }) => {
+      return cinematicMatchMedia(({ isReduce, isCompact, isMobile }) => {
         const images = imageRefs.current.filter(Boolean);
         const words = wordRefs.current.filter(Boolean);
         const rail = textRailRef.current;
@@ -270,17 +281,17 @@ export default function ArchitectureSection() {
           scale: OPENING_IMAGE_SCALE,
           filter: 'blur(0px)',
         });
-        gsap.set(images.slice(1), imageInactive());
+        gsap.set(images.slice(1), imageInactive(isMobile));
         gsap.set(redRevealRef.current, { opacity: OPENING_RED_START });
         gsap.set(veilRef.current, { opacity: OPENING_VEIL_START });
         gsap.set(mobileReadingVeilRef.current, { opacity: 1 });
         gsap.set(mobileBottomVeilRef.current, { opacity: 1 });
         gsap.set(copyRef.current, { opacity: 1, y: 0 });
         gsap.set(rail, { x: positions[0] ?? 0 });
-        gsap.set(words, wordInactive());
+        gsap.set(words, wordInactive(isMobile));
 
-        const end = isCompact ? '+=200%' : '+=240%';
-        const scrub = isCompact ? 0.42 : 0.5;
+        const end = isMobile ? '+=165%' : isCompact ? '+=190%' : '+=240%';
+        const scrub = isMobile ? 0.36 : isCompact ? 0.42 : 0.5;
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -298,6 +309,7 @@ export default function ArchitectureSection() {
         addOpeningReveal(tl, images, redRevealRef, veilRef, isCompact);
         buildSyncedPropertyTimeline(tl, images, words, rail, positions, veilRef, {
           mobileVeils: isCompact,
+          isMobile,
         });
 
         tl.addLabel('end', 1);
@@ -327,7 +339,7 @@ export default function ArchitectureSection() {
               ref={(el) => {
                 imageRefs.current[index] = el;
               }}
-              className={`absolute inset-0 origin-center will-change-[transform,opacity,filter] ${index === 0 ? 'z-0' : 'z-[1]'}`}
+              className={`absolute inset-0 origin-center will-change-[transform,opacity] md:will-change-[transform,opacity,filter] ${index === 0 ? 'z-0' : 'z-[1]'}`}
               style={{ opacity: index === 0 ? OPENING_IMAGE_OPACITY : 0 }}
             >
               <img
@@ -417,7 +429,7 @@ export default function ArchitectureSection() {
                   ref={(el) => {
                     wordRefs.current[index] = el;
                   }}
-                  className="font-editorial text-[clamp(4rem,24vw,7rem)] font-light italic leading-[0.8] tracking-[-0.06em] will-change-[opacity,filter] md:text-[clamp(7rem,18vw,20rem)]"
+                  className="font-editorial text-[clamp(4rem,24vw,7rem)] font-light italic leading-[0.8] tracking-[-0.06em] will-change-[opacity] md:text-[clamp(7rem,18vw,20rem)] md:will-change-[opacity,filter]"
                   style={wordInactive()}
                 >
                   {t(`cinematic.architecture.words.${key}`)}

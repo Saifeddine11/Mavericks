@@ -7,10 +7,12 @@ import {
   buildHeroSnapPoints,
   CHAPTER_KEYFRAMES,
   chapterVisualState,
+  chapterVisualStateMobile,
   clampProgress,
   ctaOpacity,
   opacityFromKeyframes,
   SCROLL_TRIGGER_SNAP,
+  SCROLL_TRIGGER_SNAP_MOBILE,
   scrollHintOpacity,
 } from '../hero/heroV2ScrollMath';
 import {
@@ -63,7 +65,8 @@ function paintFrame(progress, refs) {
     const el = chapterEls[i];
     if (!el) continue;
     const op = opacityFromKeyframes(progress, CHAPTER_KEYFRAMES[i]);
-    const { translateY, blurPx } = chapterVisualState(op);
+    const visualState = refs.isMobile ? chapterVisualStateMobile(op) : chapterVisualState(op);
+    const { translateY, blurPx } = visualState;
     el.style.opacity = String(op);
     el.style.transform = `translate3d(0,${translateY}px,0)`;
     el.style.filter = blurPx > 0.05 ? `blur(${blurPx}px)` : 'none';
@@ -219,7 +222,7 @@ export default function ScrollVideoHeroSection() {
         heroV2Config.ctaFadeSpan,
       );
 
-      const paintAtProgress = (progress) => {
+      const paintAtProgress = (progress, isMobile = false) => {
         paintFrame(progress, {
           video: videoRef.current,
           videoReady: videoReadyRef.current,
@@ -231,17 +234,8 @@ export default function ScrollVideoHeroSection() {
           barEl: progressBarRef.current,
           readVeilEl: readVeilRef.current,
           textStageEl: textStageRef.current,
+          isMobile,
         });
-      };
-
-      const finishScrub = (self) => {
-        const progress = clampProgress(self.progress);
-        progressRef.current = progress;
-        const v = videoRef.current;
-        if (v && videoReadyRef.current && Number.isFinite(v.duration)) {
-          targetTimeRef.current = progress * v.duration;
-        }
-        paintAtProgress(progress);
       };
 
       const syncChrome = () => {
@@ -249,8 +243,18 @@ export default function ScrollVideoHeroSection() {
         setHeaderTheme('light');
       };
 
-      const createHeroTrigger = (pinDistance, heightUnit, scrub) => {
+      const createHeroTrigger = (pinDistance, heightUnit, scrub, isMobile = false) => {
         section.style.height = `${pinDistance * 100}${heightUnit}`;
+
+        const finishScrub = (self) => {
+          const progress = clampProgress(self.progress);
+          progressRef.current = progress;
+          const v = videoRef.current;
+          if (v && videoReadyRef.current && Number.isFinite(v.duration)) {
+            targetTimeRef.current = progress * v.duration;
+          }
+          paintAtProgress(progress, isMobile);
+        };
 
         const trigger = ScrollTrigger.create({
           trigger: section,
@@ -263,7 +267,7 @@ export default function ScrollVideoHeroSection() {
           invalidateOnRefresh: true,
           snap: {
             snapTo: snapPoints,
-            ...SCROLL_TRIGGER_SNAP,
+            ...(isMobile ? SCROLL_TRIGGER_SNAP_MOBILE : SCROLL_TRIGGER_SNAP),
           },
           onEnter: syncChrome,
           onEnterBack: syncChrome,
@@ -279,7 +283,7 @@ export default function ScrollVideoHeroSection() {
             if (!rafRef.current) {
               rafRef.current = requestAnimationFrame(() => {
                 rafRef.current = 0;
-                paintAtProgress(progressRef.current);
+                paintAtProgress(progressRef.current, isMobile);
               });
             }
           },
@@ -288,7 +292,7 @@ export default function ScrollVideoHeroSection() {
         });
 
         ScrollTrigger.refresh();
-        paintAtProgress(clampProgress(trigger.progress));
+        paintAtProgress(clampProgress(trigger.progress), isMobile);
 
         return () => {
           trigger.kill();
@@ -298,11 +302,11 @@ export default function ScrollVideoHeroSection() {
       const mm = gsap.matchMedia();
 
       mm.add('(max-width: 767px)', () =>
-        createHeroTrigger(heroV2Config.pinScrollDistanceMobile, 'svh', 0.6),
+        createHeroTrigger(heroV2Config.pinScrollDistanceMobile, 'svh', 0.45, true),
       );
 
       mm.add('(min-width: 768px)', () =>
-        createHeroTrigger(heroV2Config.pinScrollDistance, 'vh', true),
+        createHeroTrigger(heroV2Config.pinScrollDistance, 'vh', true, false),
       );
 
       return () => {

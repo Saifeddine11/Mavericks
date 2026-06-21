@@ -7,7 +7,6 @@ import {
   cinematicMatchMedia,
   refreshScrollTriggersWhenReady,
   SCROLL_SNAP,
-  SCROLL_SNAP_COMPACT,
   setStaticVisible,
   useScrollTriggerRefresh,
 } from '../hooks/useCinematicScroll';
@@ -38,7 +37,7 @@ export default function ConceptSection() {
       const inner = innerRef.current;
       if (!section || !inner) return;
 
-      return cinematicMatchMedia(({ isReduce, isCompact }) => {
+      return cinematicMatchMedia(({ isReduce, isCompact, isMobile }) => {
         if (isReduce) {
           setStaticVisible([copyRef.current, imageWrapRef.current]);
           return undefined;
@@ -47,8 +46,9 @@ export default function ConceptSection() {
         gsap.set(imageWrapRef.current, { scale: 1 });
         gsap.set(copyRef.current, { opacity: 0, y: 24 });
 
-        const snap = isCompact ? SCROLL_SNAP_COMPACT : SCROLL_SNAP;
-        const end = isCompact ? '+=125%' : '+=220%';
+        const end = isMobile ? '+=100%' : isCompact ? '+=115%' : '+=220%';
+        const scrub = isMobile ? 0.38 : isCompact ? 0.45 : 0.55;
+        const snap = isCompact ? false : SCROLL_SNAP;
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -56,7 +56,7 @@ export default function ConceptSection() {
             start: 'top top',
             end,
             pin: inner,
-            scrub: isCompact ? 0.48 : 0.55,
+            scrub,
             anticipatePin: 1,
             invalidateOnRefresh: true,
             snap,

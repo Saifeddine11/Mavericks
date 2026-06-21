@@ -6,10 +6,14 @@
 import { useState } from 'react';
 
 const CARD_RADIUS = '1.25rem';
-const INACTIVE_HEIGHT = 290;
-const ACTIVE_HEIGHT = 520;
 const EASING = 'cubic-bezier(.1, .7, 0, 1)';
-const TRANSITION_MS = 1250;
+const TRANSITION_MS = 900;
+
+function cardHeights(isActive) {
+  return isActive
+    ? 'clamp(400px, 118vw, 480px)'
+    : 'clamp(240px, 72vw, 280px)';
+}
 
 export default function TerritoriesMobileGallery({ items, backgroundColor }) {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -19,7 +23,7 @@ export default function TerritoriesMobileGallery({ items, backgroundColor }) {
   };
 
   return (
-    <div className="mx-auto flex w-full flex-col items-center gap-4 py-2">
+    <div className="mx-auto flex w-full max-w-full flex-col items-center gap-3 py-2 sm:gap-4">
       {items.map((entry, index) => {
         const isActive = activeIndex === index;
 
@@ -27,9 +31,9 @@ export default function TerritoriesMobileGallery({ items, backgroundColor }) {
           <button
             key={`${entry.image}-${index}`}
             type="button"
-            className="relative w-[88vw] max-w-full overflow-hidden rounded-[1.25rem] shadow-lg outline-none transition-[height] duration-[1250ms] will-change-[height,filter] focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(184,138,90,0.55)] focus-visible:outline-offset-4 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="relative w-[min(88vw,100%)] max-w-full overflow-hidden rounded-[1.25rem] shadow-lg outline-none transition-[height] duration-[900ms] will-change-[height,filter] focus:outline-none focus-visible:outline focus-visible:outline-1 focus-visible:outline-[rgba(184,138,90,0.55)] focus-visible:outline-offset-4 focus-visible:ring-0 focus-visible:ring-offset-0"
             style={{
-              height: isActive ? ACTIVE_HEIGHT : INACTIVE_HEIGHT,
+              height: cardHeights(isActive),
               transitionTimingFunction: EASING,
               borderRadius: CARD_RADIUS,
             }}

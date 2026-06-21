@@ -99,7 +99,7 @@ export default function BrandSignatureSection() {
         return undefined;
       }
 
-      return cinematicMatchMedia(({ isCompact }) => {
+      return cinematicMatchMedia(({ isCompact, isMobile }) => {
         const marketScaleEnd = isCompact ? 2.75 : 3.35;
         const origin = '50% 55%';
 
@@ -119,13 +119,16 @@ export default function BrandSignatureSection() {
           gsap.set(caption, { opacity: 0 });
         }
 
+        const end = isMobile ? '+=200%' : isCompact ? '+=240%' : '+=300%';
+        const scrub = isMobile ? 0.42 : isCompact ? 0.5 : 0.7;
+
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             start: 'top top',
-            end: '+=300%',
+            end,
             pin: true,
-            scrub: 0.7,
+            scrub,
             anticipatePin: 1,
             invalidateOnRefresh: true,
           },

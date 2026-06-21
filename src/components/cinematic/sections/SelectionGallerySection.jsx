@@ -29,7 +29,7 @@ export default function SelectionGallerySection() {
         </h2>
       </div>
 
-      <div className="gallery-safe-area w-full overflow-x-hidden px-5 py-8 md:flex md:min-h-[clamp(680px,70vh,800px)] md:items-center md:justify-center md:px-[clamp(4rem,8vw,9rem)] md:py-0 md:pt-[clamp(4rem,8vh,7rem)] md:pb-[clamp(3rem,4vh,5rem)]">
+      <div className="gallery-safe-area w-full overflow-x-clip px-5 py-8 md:flex md:min-h-[clamp(680px,70vh,800px)] md:items-center md:justify-center md:overflow-x-hidden md:px-[clamp(4rem,8vw,9rem)] md:py-0 md:pt-[clamp(4rem,8vh,7rem)] md:pb-[clamp(3rem,4vh,5rem)]">
         <div className="hidden h-full w-full md:block">
           <ThreeDHoverGallery
             items={items}

@@ -27,7 +27,7 @@ export const CHAPTER_KEYFRAMES = [
 ];
 
 /**
- * Maps chapter opacity → blur / translateY.
+ * Maps chapter opacity → blur / translateY (desktop).
  * Readable plateau (op ≥ 0.88): nearly sharp.
  * Mid-transition: 6–12px blur.
  * Exit (op < 0.55): up to 16px blur + upward drift.
@@ -48,6 +48,27 @@ export function chapterVisualState(op) {
 
   const translateY =
     (1 - op) * 28 + transitionBlend * 6 + (op < 0.5 ? (0.5 - op) * 18 : 0);
+
+  return { opacity: op, translateY, blurPx };
+}
+
+/** Lighter motion for mobile — opacity + transform only, capped blur. */
+export function chapterVisualStateMobile(op) {
+  const transitionBlend = 4 * op * (1 - op);
+
+  let blurPx;
+  if (op >= 0.88) {
+    blurPx = (1 - op) * 3;
+  } else {
+    blurPx = transitionBlend * 4;
+    if (op < 0.55) {
+      blurPx += (0.55 - op) * 4;
+    }
+    blurPx = Math.min(6, blurPx);
+  }
+
+  const translateY =
+    (1 - op) * 16 + transitionBlend * 3 + (op < 0.5 ? (0.5 - op) * 8 : 0);
 
   return { opacity: op, translateY, blurPx };
 }
@@ -116,6 +137,14 @@ export function buildHeroSnapPoints(ctaRevealAt, ctaFadeSpan) {
 export const SCROLL_TRIGGER_SNAP = {
   duration: { min: 0.35, max: 0.9 },
   delay: 0.08,
+  ease: 'power2.out',
+  directional: true,
+};
+
+/** Mobile hero snap — shorter settle, less sticky feel. */
+export const SCROLL_TRIGGER_SNAP_MOBILE = {
+  duration: { min: 0.18, max: 0.42 },
+  delay: 0.04,
   ease: 'power2.out',
   directional: true,
 };

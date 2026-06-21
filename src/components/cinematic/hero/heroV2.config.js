@@ -10,7 +10,7 @@ export const heroV2Config = {
   /** Pinned section height (× 100vh). */
   pinScrollDistance: 3.5,
   /** Mobile pin height (× 100svh) — stable on iOS address bar. */
-  pinScrollDistanceMobile: 3.2,
+  pinScrollDistanceMobile: 2.75,
   /** Min delta (seconds) before writing video.currentTime (~60fps). */
   seekFrameThreshold: 1 / 60,
   /** CTA visible from this scroll progress (0..1). */
