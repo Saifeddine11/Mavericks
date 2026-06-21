@@ -1,76 +1,40 @@
 /**
- * Marrakech investment territories — horizontal gallery data.
- *
- * Swap `mediaKey` or `imageFallback` when zone-specific photography is ready.
- * Images resolve via `getMediaSrc` (local paths or remote CDN fallback).
+ * Marrakech investment territories — horizontal gallery data (4-card selection).
+ * Photography: Villa Péninsula only (`public/images/villa-peninsula/investment/`).
  */
 
-import { getMediaSrc } from '@/lib/media';
-import { CINEMATIC_IMAGES } from '@/components/cinematic/sections/images';
+const INVESTMENT_BASE = '/images/villa-peninsula/investment';
+
+/** @type {Record<string, string>} */
+export const TERRITORY_INVESTMENT_IMAGES = {
+  triangleOrHivernage: `${INVESTMENT_BASE}/triangle-or-hivernage.png`,
+  guelizHyperCentre: `${INVESTMENT_BASE}/gueliz-hypercentre.webp`,
+  palmeraie: `${INVESTMENT_BASE}/palmeraie.webp`,
+  ourika: `${INVESTMENT_BASE}/route-ourika.webp`,
+};
 
 /**
  * @typedef {Object} TerritoryZone
  * @property {string} id — i18n key suffix under `cinematic.territories.zones.*`
- * @property {string} [mediaKey] — key in `MEDIA` manifest
- * @property {() => string} [imageFallback] — used when no dedicated location asset yet
+ * @property {string} imageKey — key in TERRITORY_INVESTMENT_IMAGES
  */
 
 /** @type {TerritoryZone[]} */
 export const TERRITORY_ZONES = [
-  {
-    id: 'palmeraie',
-    mediaKey: 'locationPalmeraie',
-    imageFallback: () => CINEMATIC_IMAGES.teaserOne,
-  },
-  {
-    id: 'hivernage',
-    mediaKey: 'locationHivernage',
-    imageFallback: () => CINEMATIC_IMAGES.propertyVilla,
-  },
-  {
-    id: 'gueliz',
-    mediaKey: 'locationGueliz',
-    imageFallback: () => CINEMATIC_IMAGES.propertyAppartement,
-  },
-  {
-    id: 'agdal',
-    mediaKey: 'locationAgdal',
-    imageFallback: () => CINEMATIC_IMAGES.growing,
-  },
-  {
-    id: 'amelkis',
-    mediaKey: 'locationAmelkis',
-    imageFallback: () => CINEMATIC_IMAGES.propertyVilla,
-  },
-  {
-    id: 'medina',
-    mediaKey: 'locationMedina',
-    imageFallback: () => CINEMATIC_IMAGES.propertyRiad,
-  },
-  {
-    id: 'ourika',
-    mediaKey: 'locationOurika',
-    imageFallback: () => CINEMATIC_IMAGES.teaserOne,
-  },
+  { id: 'triangleOrHivernage', imageKey: 'triangleOrHivernage' },
+  { id: 'guelizHyperCentre', imageKey: 'guelizHyperCentre' },
+  { id: 'palmeraie', imageKey: 'palmeraie' },
+  { id: 'ourika', imageKey: 'ourika' },
 ];
 
 /**
- * Resolve image URL for a territory zone.
  * @param {TerritoryZone} zone
  */
 export function getTerritoryImage(zone) {
-  if (zone.mediaKey) {
-    try {
-      return getMediaSrc(zone.mediaKey);
-    } catch {
-      // Local file missing — fall through
-    }
-  }
-  return zone.imageFallback?.() ?? '';
+  return TERRITORY_INVESTMENT_IMAGES[zone.imageKey] ?? '';
 }
 
 /**
- * Build gallery items with copy from i18n.
  * @param {(key: string, opts?: object) => string} t
  */
 export function buildTerritoryGalleryItems(t) {

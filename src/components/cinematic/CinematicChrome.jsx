@@ -232,20 +232,30 @@ export default function CinematicChrome() {
             >
               <button
                 type="button"
-                onClick={toggleMenu}
+                onClick={menuOpen ? closeMenu : toggleMenu}
                 aria-expanded={menuOpen}
+                aria-label={menuOpen ? t('nav.close') : t('chrome.menu')}
                 className={clsx(
-                  'px-4 py-2.5 font-label text-[11px] uppercase tracking-[0.18em] transition-colors md:px-5',
+                  'flex items-center justify-center px-4 py-2.5 font-label text-[11px] uppercase tracking-[0.18em] transition-colors md:px-5',
+                  menuOpen ? 'min-w-[3.25rem]' : '',
                   isLight ? 'text-stone-brand [text-shadow:0_1px_10px_rgba(39,7,7,0.45)]' : 'text-dark-red',
                 )}
               >
-                {t('chrome.menu')}
+                {menuOpen ? (
+                  <span className="text-lg leading-none" aria-hidden="true">
+                    ×
+                  </span>
+                ) : (
+                  t('chrome.menu')
+                )}
               </button>
               <a
                 href="#contact"
+                onClick={menuOpen ? handleNavigate : undefined}
                 className={clsx(
-                  'group relative hidden overflow-hidden rounded-full px-5 py-2.5 font-label text-[11px] uppercase tracking-[0.18em] md:block',
+                  'group relative overflow-hidden rounded-full px-5 py-2.5 font-label text-[11px] uppercase tracking-[0.18em]',
                   'bg-champagne text-dark-red transition-colors duration-300 hover:bg-champagne-light',
+                  menuOpen ? 'block' : 'hidden md:block',
                 )}
               >
                 <span className="relative z-10">{t('chrome.enquire')}</span>
@@ -310,23 +320,10 @@ export default function CinematicChrome() {
         aria-modal="true"
         aria-label={t('chrome.menu')}
       >
-        <div className="flex shrink-0 items-center gap-3 border-b border-white/[0.1] px-6 pb-5 pt-6 md:px-8 md:pt-8">
-          <button
-            type="button"
-            onClick={closeMenu}
-            aria-label={t('nav.close')}
-            className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-xl leading-none text-stone-brand/90 transition-colors hover:border-white/25 hover:text-stone-brand"
-          >
-            ×
-          </button>
-          <a
-            href="#contact"
-            onClick={handleNavigate}
-            className="cinematic-menu-cta-pill inline-flex min-h-10 items-center rounded-full bg-champagne px-5 py-2.5 font-label text-[10px] uppercase tracking-[0.22em] text-dark-red transition-colors hover:bg-champagne-light md:text-[11px]"
-          >
-            {t('chrome.enquire')}
-          </a>
-        </div>
+        <div
+          className="shrink-0 border-b border-white/[0.1] px-6 pb-5 pt-20 md:px-8 md:pt-24"
+          aria-hidden="true"
+        />
 
         <nav className="min-h-0 flex-1 overflow-y-auto px-6 py-2 md:px-8 md:py-4">
           <ul ref={itemsRef} className="flex flex-col">

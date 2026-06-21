@@ -24,7 +24,7 @@ export default function Footer() {
         }}
       />
 
-      <div className="border-t border-champagne/20">
+      <div>
         <div className="container-editorial pb-20 pt-14 md:pt-16">
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-8">
             <div className="md:col-span-4">

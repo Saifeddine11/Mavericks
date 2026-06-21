@@ -184,35 +184,20 @@
       "intro": "Chaque adresse raconte un usage, une rareté et un potentiel. Mavericks distingue les quartiers de rendement, les zones patrimoniales et les territoires de prestige à forte désirabilité.",
       "verticalLabel": "Territoires",
       "zones": {
+        "triangleOrHivernage": {
+          "label": "Triangle d'Or / Hivernage",
+          "angle": "Prestige central · forte demande",
+          "tag": "Adresse établie"
+        },
+        "guelizHyperCentre": {
+          "label": "Guéliz Hyper-Centre",
+          "angle": "Appartements · rendement urbain",
+          "tag": "Liquidité locative"
+        },
         "palmeraie": {
           "label": "Palmeraie",
           "angle": "Villas privées · grands terrains",
-          "tag": "Prestige résidentiel"
-        },
-        "hivernage": {
-          "label": "Hivernage",
-          "angle": "Premium central · forte demande",
-          "tag": "Adresse établie"
-        },
-        "gueliz": {
-          "label": "Guéliz",
-          "angle": "Appartements · rendement urbain",
-          "tag": "Cœur vivant"
-        },
-        "agdal": {
-          "label": "Agdal",
-          "angle": "Résidences modernes · équilibre",
-          "tag": "Confort familial"
-        },
-        "amelkis": {
-          "label": "Amelkis",
-          "angle": "Golf villas · prestige discret",
-          "tag": "Calme sélectif"
-        },
-        "medina": {
-          "label": "Médina",
-          "angle": "Riads · patrimoine vivant",
-          "tag": "Valeur émotionnelle"
+          "tag": "Patrimoine résidentiel"
         },
         "ourika": {
           "label": "Route de l'Ourika",
@@ -220,6 +205,13 @@
           "tag": "Horizon long terme"
         }
       }
+    },
+    "brandSignature": {
+      "ariaLabel": "Signature Off Market",
+      "eyebrow": "MAISON PRIVÉE",
+      "lineOff": "OFF",
+      "lineMarket": "MARKET",
+      "tagline": "Une maison d'adresses, de discrétion et de transmission à Marrakech."
     },
     "indicator": {
       "architecture": "Villas & Riads",

@@ -1,13 +1,12 @@
 /**
- * Marrakech investment territories — 3D horizontal card gallery.
- *
- * Between Architecture and Concept. Uses Lightswind `3d-hover-gallery`
- * with zone-specific copy and swappable image keys from `content/territories.js`.
+ * Marrakech investment territories — 3D horizontal card gallery (desktop)
+ * + vertical tap gallery (mobile).
  */
 
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
 import ThreeDHoverGallery from '@/components/lightswind/3d-hover-gallery';
+import TerritoriesMobileGallery from '@/components/cinematic/sections/TerritoriesMobileGallery';
 import { brandColors } from '@/config/brand';
 import { buildTerritoryGalleryItems } from '@/content/territories';
 
@@ -18,10 +17,10 @@ export default function SelectionGallerySection() {
   return (
     <section
       id="territories"
-      className="relative bg-dark-red"
+      className="relative overflow-x-hidden bg-dark-red"
       aria-label={t('cinematic.territories.ariaLabel')}
     >
-      <div className="border-b border-white/[0.06] px-6 pb-4 pt-10 md:px-10 md:pt-14">
+      <div className="border-b border-white/[0.06] px-6 pb-6 pt-10 md:px-10 md:pb-8 md:pt-14">
         <p className="font-label text-[10px] uppercase tracking-[0.28em] text-champagne/90">
           {t('cinematic.territories.eyebrow')}
         </p>
@@ -30,21 +29,33 @@ export default function SelectionGallerySection() {
         </h2>
       </div>
 
-      <ThreeDHoverGallery
-        items={items}
-        backgroundColor={brandColors.darkRed}
-        className="bg-dark-red py-8 md:py-12"
-        itemWidth={7}
-        itemHeight={15}
-        gap={0.85}
-        perspective={42}
-        hoverScale={11}
-        transitionDuration={1.2}
-        grayscaleStrength={0.92}
-        brightnessLevel={0.5}
-        activeWidth={36}
-        enableKeyboardNavigation
-      />
+      <div className="gallery-safe-area w-full overflow-x-hidden px-5 py-8 md:flex md:min-h-[clamp(680px,70vh,800px)] md:items-center md:justify-center md:px-[clamp(4rem,8vw,9rem)] md:py-0 md:pt-[clamp(4rem,8vh,7rem)] md:pb-[clamp(3rem,4vh,5rem)]">
+        <div className="hidden h-full w-full md:block">
+          <ThreeDHoverGallery
+            items={items}
+            backgroundColor={brandColors.darkRed}
+            className="h-full w-full bg-dark-red"
+            itemWidth={12}
+            itemHeight={20}
+            gap={1.2}
+            perspective={50}
+            hoverScale={15}
+            transitionDuration={1.25}
+            grayscaleStrength={1}
+            brightnessLevel={0.5}
+            activeWidth={45}
+            zDepth={10}
+            enableKeyboardNavigation
+          />
+        </div>
+
+        <div className="md:hidden">
+          <TerritoriesMobileGallery
+            items={items}
+            backgroundColor={brandColors.darkRed}
+          />
+        </div>
+      </div>
     </section>
   );
 }

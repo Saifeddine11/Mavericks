@@ -29,10 +29,10 @@ const TEXT_RAIL_VEIL =
   'linear-gradient(to top, rgba(39,7,7,0.48), rgba(39,7,7,0.16), transparent)';
 
 /** Opening occupies first segment — red cinematic emerge */
-const OPENING_END = 0.18;
+const OPENING_END = 0.15;
 
 /** Final Riad hold — extra pinned scroll with no visual change (~1s feel) */
-const RIAD_HOLD = 0.1;
+const RIAD_HOLD = 0.06;
 
 const OPENING_IMAGE_OPACITY = 1;
 const OPENING_IMAGE_SCALE = 1.04;
@@ -63,7 +63,7 @@ const IMAGE_ACTIVE = Object.freeze({
 const IMAGE_INACTIVE = Object.freeze({
   opacity: 0,
   scale: 1.03,
-  filter: 'blur(8px)',
+  filter: 'blur(4px)',
 });
 
 const wordActive = () => ({ ...WORD_ACTIVE });
@@ -71,11 +71,11 @@ const wordInactive = () => ({ ...WORD_INACTIVE });
 const imageActive = () => ({ ...IMAGE_ACTIVE });
 const imageInactive = () => ({ ...IMAGE_INACTIVE });
 
-/** Snap to villa / appartement / riad resting points */
+/** Snap to villa / appartement / riad resting points (desktop only) */
 const ARCH_SNAP = {
   snapTo: 'labelsDirectional',
-  duration: { min: 0.35, max: 0.8 },
-  delay: 0.08,
+  duration: { min: 0.18, max: 0.45 },
+  delay: 0.04,
   ease: 'power2.out',
 };
 
@@ -279,8 +279,8 @@ export default function ArchitectureSection() {
         gsap.set(rail, { x: positions[0] ?? 0 });
         gsap.set(words, wordInactive());
 
-        const end = isCompact ? '+=300%' : '+=320%';
-        const scrub = isCompact ? 0.5 : 0.6;
+        const end = isCompact ? '+=200%' : '+=240%';
+        const scrub = isCompact ? 0.42 : 0.5;
 
         const tl = gsap.timeline({
           scrollTrigger: {
@@ -291,7 +291,7 @@ export default function ArchitectureSection() {
             scrub,
             anticipatePin: 1,
             invalidateOnRefresh: true,
-            snap: ARCH_SNAP,
+            snap: isCompact ? false : ARCH_SNAP,
           },
         });
 
