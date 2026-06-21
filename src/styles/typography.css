@@ -1,0 +1,48 @@
+/**
+ * Typography — @font-face placeholders for licensed brand fonts.
+ * DO NOT enable until files exist in public/assets/fonts/
+ *
+ * Current stack: Google Fonts via src/index.css
+ * Roles: src/config/brand.js → brandFonts
+ */
+
+/*
+@font-face {
+  font-family: 'OT Jubilee';
+  src: url('/assets/fonts/OTJubilee-PlatinumRegular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/assets/fonts/Switzer-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Switzer';
+  src: url('/assets/fonts/Switzer-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Voyage';
+  src: url('/assets/fonts/Voyage-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Typography scale — reference only (Tailwind: fontSize in tailwind.config.js) */
+:root {
+  --font-label: 'Tenor Sans', system-ui, sans-serif;
+  --font-editorial: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Questrial', system-ui, sans-serif;
+}

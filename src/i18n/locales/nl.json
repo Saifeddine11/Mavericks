@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "title": "Mavericks — Private luxe vastgoed in Marrakech",
+    "description": "Mavericks presenteert een vertrouwelijke selectie van villa's, riads en uitzonderlijke residenties in Marrakech, samengesteld voor een internationale clientèle.",
+    "ogTitle": "Mavericks — Privé adressen in Marrakech",
+    "ogDescription": "Een private toegangspoort tot de meest gewilde adressen van Marrakech."
+  },
+  "nav": {
+    "collection": "De Collectie",
+    "lifestyle": "Lifestyle",
+    "locations": "Adressen",
+    "privateAccess": "Privé toegang",
+    "enquire": "Contact",
+    "menu": "Menu",
+    "close": "Sluiten"
+  },
+  "language": {
+    "label": "Taal",
+    "switchTo": "Overschakelen naar {{language}}"
+  },
+  "actions": {
+    "discover": "Ontdek Mavericks",
+    "requestPrivateAccess": "Vraag privé toegang aan",
+    "registerInterest": "Interesse aangeven",
+    "scheduleVisit": "Bezoek inplannen",
+    "contactWhatsApp": "Contact via WhatsApp",
+    "sellProperty": "Vastgoed toevertrouwen"
+  },
+  "hero": {
+    "eyebrow": "Marrakech",
+    "title": "Daar waar Marrakech zijn meest private adressen onthult.",
+    "subtitle": "Mavericks presenteert een vertrouwelijke selectie van villa's, riads en uitzonderlijke residenties, samengesteld voor een internationale clientèle.",
+    "titleLines": [
+      "Daar waar Marrakech",
+      "zijn meest private",
+      "adressen onthult"
+    ],
+    "subtitleEditorial": "Villa's, riads en uitzonderlijke residenties, met discretie geselecteerd voor een internationale clientèle.",
+    "ctaExplore": "Ontdekken",
+    "ctaEnquire": "Privé contact"
+  },
+  "brandStatement": {
+    "eyebrow": "Onze filosofie",
+    "body": "Mavericks is geen vastgoedcatalogus.\nHet is een private toegangspoort tot de meest gewilde adressen van Marrakech."
+  },
+  "collection": {
+    "eyebrow": "De Collectie",
+    "title": "Een zeldzame selectie, adres voor adres gekozen.",
+    "intro": "Elk Mavericks-adres voldoet aan strenge eisen op het gebied van architectuur, locatie en discretie.",
+    "categories": {
+      "villas": {
+        "title": "Privé villa's",
+        "description": "Hedendaagse en neo-Marokkaanse residenties in Palmeraie, Amelkis en verder.",
+        "caption": "Architectuur, tuin, water."
+      },
+      "riads": {
+        "title": "Vertrouwelijke riads",
+        "description": "Historische binnenplaatsen, gerestaureerd naar erfgoednormen, in het hart van de Medina.",
+        "caption": "Patio's, zellige, gefilterd licht."
+      },
+      "penthouses": {
+        "title": "Penthouses",
+        "description": "Daktterrassen in Hivernage en Agdal, met uitzicht op het Atlasgebergte en de Koutoubia.",
+        "caption": "Hoogtes en horizonten."
+      },
+      "estates": {
+        "title": "Privé domeinen",
+        "description": "Grote landgoederen met olijfgaarden, stallen en signature tuinen.",
+        "caption": "Wijde landen, zeldzame signaturen."
+      },
+      "offMarket": {
+        "title": "Off-market",
+        "description": "Adressen die nooit publiek worden aangeboden, gedeeld op aanvraag.",
+        "caption": "Op aanvraag, in vertrouwen."
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "Architectuur",
+    "title": "Sfeer voor vastgoed.",
+    "body": "Binnenplaatsen, stenen bogen, waterspiegels, palmschaduwen — de architectuur van Marrakech is ons vertrekpunt."
+  },
+  "lifestyle": {
+    "eyebrow": "Lifestyle",
+    "title": "Marrakech leven, in stilte.",
+    "body": "Privé tuinen, stille patio's, uitzicht op het Atlasgebergte, palmbossen en verfijnde gastvrijheid. Onze adressen zijn ontworpen voor traagheid."
+  },
+  "privateAccess": {
+    "eyebrow": "Discretie",
+    "title": "Sommige eigendommen worden nooit gepubliceerd.",
+    "body": "Een aanzienlijk deel van onze portefeuille wordt alleen gedeeld met gekwalificeerde cliënten, op aanvraag en na kennismaking.",
+    "cta": "Vraag privé toegang aan",
+    "quiet": "Sommige eigendommen worden nooit gepubliceerd.\nToegang begint met een privégesprek."
+  },
+  "locations": {
+    "eyebrow": "Signature locaties",
+    "title": "De wijken die wij kennen.",
+    "items": {
+      "palmeraie": {
+        "name": "Palmeraie",
+        "description": "Privé villa's in het hart van het historische palmenbos."
+      },
+      "hivernage": {
+        "name": "Hivernage",
+        "description": "Residentiële boulevards, prestige hospitality, dichtbij Guéliz."
+      },
+      "amelkis": {
+        "name": "Amelkis",
+        "description": "Golf, beveiliging en weidse tuinen, tien minuten van de Medina."
+      },
+      "ourika": {
+        "name": "Route de l'Ourika",
+        "description": "Domeinen met uitzicht op het Atlasgebergte, absolute rust."
+      },
+      "medina": {
+        "name": "Medina",
+        "description": "Historische riads verweven in de oude stadskern."
+      },
+      "agdal": {
+        "name": "Agdal",
+        "description": "Moderne residentiële adressen, koninklijke tuinen vlakbij."
+      }
+    }
+  },
+  "enquiry": {
+    "eyebrow": "Contact",
+    "title": "Een discreet gesprek beginnen.",
+    "intro": "Beschrijf uw zoektocht. Wij reageren binnen 24 uur, in volledige vertrouwelijkheid.",
+    "fields": {
+      "name": "Volledige naam",
+      "email": "E-mailadres",
+      "whatsapp": "WhatsApp",
+      "country": "Land",
+      "budget": "Budget",
+      "propertyType": "Type vastgoed",
+      "message": "Uw bericht"
+    },
+    "submit": "Verzend mijn aanvraag",
+    "consent": "Uw gegevens worden met de hoogste vertrouwelijkheid behandeld.",
+    "invitation": "Begin een discreet gesprek."
+  },
+  "footer": {
+    "tagline": "Private luxe vastgoed in Marrakech.",
+    "contact": "Contact",
+    "follow": "Volg ons",
+    "legal": "Juridisch",
+    "rights": "© {{year}} Mavericks. Alle rechten voorbehouden."
+  },
+  "chrome": {
+    "menu": "Menu",
+    "enquire": "Contact",
+    "scrollHint": "Scrollen",
+    "of": "van"
+  },
+  "dream": {
+    "eyebrow": "Mavericks",
+    "lines": [
+      "Tussen licht,",
+      "steen en tuinen,",
+      "opent Mavericks de deuren",
+      "naar een meer vertrouwelijk Marrakech."
+    ]
+  },
+  "visualReveal": {
+    "eyebrow": "Mavericks · Marrakech",
+    "caption": "Elk adres is een private film. Wij kadreren, selecteren, openen de deur.",
+    "byline": "Maison Mavericks"
+  },
+  "media": {
+    "hero": {
+      "alt": "Zonnig riad-zwembad en tuin bij een privéwoning in Marrakech"
+    },
+    "fragments": {
+      "stoneArch": {
+        "alt": "Ivoren stenen bogen rond een zonovergoten binnenplaats in Marrakech"
+      },
+      "waterMirror": {
+        "alt": "Stilstaand poolwater dat warm licht weerspiegelt in een riad-binnenplaats"
+      },
+      "threshold": {
+        "alt": "Sierlijk gebeeldhouwde deur bij een privé adres in Marrakech"
+      },
+      "sunlitPatio": {
+        "alt": "Leeg zonovergoten patio met stenen zuilen en zachte schaduwen"
+      }
+    },
+    "reveal": {
+      "alt": "Breed zicht op een Marrakech-villa binnenplaats met bogen en spiegelend water"
+    },
+    "collection": {
+      "villas": {
+        "alt": "Hedendaagse privévilla met tuin en warme stenen gevel in Marrakech"
+      },
+      "riads": {
+        "alt": "Gerestaureerde riad-binnenplaats met zwembad en gefilterd daglicht"
+      },
+      "estates": {
+        "alt": "Landgoedtuin met palmschaduwen en gazons bij Marrakech"
+      },
+      "penthouses": {
+        "alt": "Dakterras met uitzicht over Marrakech en zacht avondlicht"
+      },
+      "offMarket": {
+        "alt": "Discreet architecturaal detail van een ongepubliceerde privéwoning"
+      }
+    },
+    "locations": {
+      "palmeraie": {
+        "alt": "Palmentuin en privétuin in Palmeraie, Marrakech"
+      },
+      "hivernage": {
+        "alt": "Warme stenen architectuur in Hivernage, Marrakech"
+      },
+      "amelkis": {
+        "alt": "Verzorgde tuinen en woning in Amelkis, Marrakech"
+      },
+      "ourika": {
+        "alt": "Licht van de Atlas-voorgebergten vanaf een landgoed aan Route de l'Ourika"
+      },
+      "medina": {
+        "alt": "Medina-straat met zonovergoten pleisterwerk en gebeeldhouwde details"
+      },
+      "agdal": {
+        "alt": "Moderne residentiële tuin in Agdal, Marrakech"
+      }
+    }
+  }
+}

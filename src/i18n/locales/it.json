@@ -1,0 +1,228 @@
+{
+  "meta": {
+    "title": "Mavericks — Immobiliare di lusso privato a Marrakech",
+    "description": "Mavericks presenta una selezione confidenziale di ville, riad e residenze d'eccezione a Marrakech, pensate per una clientela internazionale.",
+    "ogTitle": "Mavericks — Indirizzi privati a Marrakech",
+    "ogDescription": "Una porta d'accesso privata agli indirizzi più desiderati di Marrakech."
+  },
+  "nav": {
+    "collection": "La Collezione",
+    "lifestyle": "Lifestyle",
+    "locations": "Indirizzi",
+    "privateAccess": "Accesso privato",
+    "enquire": "Contattaci",
+    "menu": "Menu",
+    "close": "Chiudi"
+  },
+  "language": {
+    "label": "Lingua",
+    "switchTo": "Passa a {{language}}"
+  },
+  "actions": {
+    "discover": "Scoprire Mavericks",
+    "requestPrivateAccess": "Richiedere un accesso privato",
+    "registerInterest": "Manifestare interesse",
+    "scheduleVisit": "Pianificare una visita",
+    "contactWhatsApp": "Contattaci su WhatsApp",
+    "sellProperty": "Affidare una proprietà"
+  },
+  "hero": {
+    "eyebrow": "Marrakech",
+    "title": "Là dove Marrakech rivela i suoi indirizzi più privati.",
+    "subtitle": "Mavericks presenta una selezione confidenziale di ville, riad e residenze d'eccezione, pensate per una clientela internazionale.",
+    "titleLines": [
+      "Là dove Marrakech",
+      "rivela i suoi indirizzi",
+      "più privati"
+    ],
+    "subtitleEditorial": "Ville, riad e residenze d'eccezione, selezionati con discrezione per una clientela internazionale.",
+    "ctaExplore": "Esplorare",
+    "ctaEnquire": "Contatto privato"
+  },
+  "brandStatement": {
+    "eyebrow": "La nostra filosofia",
+    "body": "Mavericks non è un catalogo di immobili.\nÈ una porta d'accesso privata agli indirizzi più desiderati di Marrakech."
+  },
+  "collection": {
+    "eyebrow": "La Collezione",
+    "title": "Una selezione rara, scelta un indirizzo alla volta.",
+    "intro": "Ogni indirizzo Mavericks risponde a un'esigenza di architettura, posizione e riservatezza.",
+    "categories": {
+      "villas": {
+        "title": "Ville private",
+        "description": "Dimore contemporanee e neo-marocchine, alla Palmeraie, ad Amelkis e oltre.",
+        "caption": "Architettura, giardino, acqua."
+      },
+      "riads": {
+        "title": "Riad confidenziali",
+        "description": "Patii antichi restaurati con rigore patrimoniale, nel cuore della Medina.",
+        "caption": "Cortili, zellige, luce filtrata."
+      },
+      "penthouses": {
+        "title": "Attici",
+        "description": "Terrazze panoramiche all'Hivernage e all'Agdal, con vista sull'Atlante e la Koutoubia.",
+        "caption": "Altezze e orizzonti."
+      },
+      "estates": {
+        "title": "Tenute private",
+        "description": "Grandi proprietà con uliveti, scuderie e giardini d'autore.",
+        "caption": "Vasti terreni, firme rare."
+      },
+      "offMarket": {
+        "title": "Off-market",
+        "description": "Indirizzi mai pubblicati, presentati su richiesta.",
+        "caption": "Su richiesta, in privato."
+      }
+    }
+  },
+  "architecture": {
+    "eyebrow": "Architettura",
+    "title": "L'atmosfera prima della proprietà.",
+    "body": "Cortili interni, archi in pietra, specchi d'acqua, ombre di palme — l'architettura di Marrakech è il nostro punto di partenza."
+  },
+  "lifestyle": {
+    "eyebrow": "Lifestyle",
+    "title": "Vivere Marrakech, lentamente.",
+    "body": "Giardini privati, patii silenziosi, vista sull'Atlante, palmeti e ospitalità raffinata. I nostri indirizzi sono pensati per la lentezza."
+  },
+  "privateAccess": {
+    "eyebrow": "Riservatezza",
+    "title": "Alcuni immobili non sono mai pubblicati.",
+    "body": "Una parte importante del nostro portfolio è condivisa solo con clienti qualificati, su richiesta e dopo presentazione.",
+    "cta": "Richiedere un accesso privato",
+    "quiet": "Alcuni immobili non sono mai pubblicati.\nL'accesso comincia con una conversazione privata."
+  },
+  "locations": {
+    "eyebrow": "Indirizzi signature",
+    "title": "I quartieri che conosciamo.",
+    "items": {
+      "palmeraie": {
+        "name": "Palmeraie",
+        "description": "Ville private nel cuore del palmeto storico."
+      },
+      "hivernage": {
+        "name": "Hivernage",
+        "description": "Viali residenziali, ospitalità di prestigio, vicino a Guéliz."
+      },
+      "amelkis": {
+        "name": "Amelkis",
+        "description": "Golf, sicurezza e ampi giardini, a dieci minuti dalla Medina."
+      },
+      "ourika": {
+        "name": "Route de l'Ourika",
+        "description": "Tenute con vista sull'Atlante, calma assoluta."
+      },
+      "medina": {
+        "name": "Medina",
+        "description": "Riad storici nel tessuto urbano della città."
+      },
+      "agdal": {
+        "name": "Agdal",
+        "description": "Indirizzi residenziali moderni, vicino ai giardini reali."
+      }
+    }
+  },
+  "enquiry": {
+    "eyebrow": "Contattaci",
+    "title": "Iniziare una conversazione discreta.",
+    "intro": "Descrivete la vostra ricerca. Vi rispondiamo entro 24 ore, in piena riservatezza.",
+    "fields": {
+      "name": "Nome completo",
+      "email": "Indirizzo email",
+      "whatsapp": "WhatsApp",
+      "country": "Paese",
+      "budget": "Budget",
+      "propertyType": "Tipo di proprietà",
+      "message": "Il vostro messaggio"
+    },
+    "submit": "Invia la mia richiesta",
+    "consent": "Le vostre informazioni sono trattate con la più stretta riservatezza.",
+    "invitation": "Iniziare una conversazione discreta."
+  },
+  "footer": {
+    "tagline": "Immobiliare di lusso privato a Marrakech.",
+    "contact": "Contatti",
+    "follow": "Seguici",
+    "legal": "Note legali",
+    "rights": "© {{year}} Mavericks. Tutti i diritti riservati."
+  },
+  "chrome": {
+    "menu": "Menu",
+    "enquire": "Contatto",
+    "scrollHint": "Scorrere",
+    "of": "di"
+  },
+  "dream": {
+    "eyebrow": "Mavericks",
+    "lines": [
+      "Tra luce,",
+      "pietra e giardini,",
+      "Mavericks apre le porte",
+      "a una Marrakech più confidenziale."
+    ]
+  },
+  "visualReveal": {
+    "eyebrow": "Mavericks · Marrakech",
+    "caption": "Ogni indirizzo è un film privato. Inquadriamo, selezioniamo, apriamo la porta.",
+    "byline": "Maison Mavericks"
+  },
+  "media": {
+    "hero": {
+      "alt": "Piscina e giardino soleggiati in una residenza privata a Marrakech"
+    },
+    "fragments": {
+      "stoneArch": {
+        "alt": "Archi in pietra avorio che incorniciano un cortile marrakechino illuminato dal sole"
+      },
+      "waterMirror": {
+        "alt": "Acqua calma di un bacino che riflette la luce calda di un riad"
+      },
+      "threshold": {
+        "alt": "Porta scolpita di un indirizzo privato a Marrakech"
+      },
+      "sunlitPatio": {
+        "alt": "Patio vuoto al sole, colonne in pietra e ombre morbide"
+      }
+    },
+    "reveal": {
+      "alt": "Vista ampia di un cortile di villa a Marrakech con archi e specchio d'acqua"
+    },
+    "collection": {
+      "villas": {
+        "alt": "Villa privata contemporanea con giardino e facciata in pietra calda a Marrakech"
+      },
+      "riads": {
+        "alt": "Cortile di riad restaurato con piscina e luce filtrata"
+      },
+      "estates": {
+        "alt": "Giardino di tenuta con ombre di palme e prati vicino a Marrakech"
+      },
+      "penthouses": {
+        "alt": "Terrazza sul tetto con vista su Marrakech e luce serale soffusa"
+      },
+      "offMarket": {
+        "alt": "Dettaglio architettonico discreto di una residenza non pubblicata"
+      }
+    },
+    "locations": {
+      "palmeraie": {
+        "alt": "Palmeraie e giardino privato a Marrakech"
+      },
+      "hivernage": {
+        "alt": "Architettura in pietra calda a Hivernage, Marrakech"
+      },
+      "amelkis": {
+        "alt": "Giardini curati e residenza ad Amelkis, Marrakech"
+      },
+      "ourika": {
+        "alt": "Luce dei contrafforti dell'Atlante da una tenuta sulla Route de l'Ourika"
+      },
+      "medina": {
+        "alt": "Strada della Medina con intonaco soleggiato e dettagli scolpiti"
+      },
+      "agdal": {
+        "alt": "Giardino residenziale moderno ad Agdal, Marrakech"
+      }
+    }
+  }
+}

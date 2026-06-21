@@ -1,0 +1,545 @@
+{
+  "meta": {
+    "title": "Mavericks — Immobilier privé à Marrakech",
+    "description": "Mavericks sélectionne des opportunités immobilières rares à Marrakech : biens sur plan, villas, riads et accès off-market, présentés avec précision.",
+    "ogTitle": "Mavericks — Immobilier privé à Marrakech",
+    "ogDescription": "Biens sur plan, villas, riads et opportunités off-market — sélectionnés avec précision à Marrakech."
+  },
+
+  "nav": {
+    "collection": "La Collection",
+    "lifestyle": "Art de vivre",
+    "locations": "Adresses",
+    "privateAccess": "Accès privé",
+    "enquire": "Nous contacter",
+    "menu": "Menu",
+    "close": "Fermer"
+  },
+
+  "language": {
+    "label": "Langue",
+    "switchTo": "Passer en {{language}}"
+  },
+
+  "chrome": {
+    "menu": "Menu",
+    "enquire": "Parler de mon projet",
+    "scrollHint": "Faire défiler",
+    "of": "sur"
+  },
+
+  "actions": {
+    "discover": "Découvrir la sélection",
+    "requestPrivateAccess": "Demander un accès off-market",
+    "registerInterest": "Recevoir une sélection ciblée",
+    "scheduleVisit": "Décrire ma recherche",
+    "contactWhatsApp": "Parler de mon projet",
+    "sellProperty": "Confier un bien"
+  },
+
+  "hero": {
+    "eyebrow": "Marrakech",
+    "title": "Là où Marrakech révèle ses adresses les plus privées.",
+    "titleLines": [
+      "Là où Marrakech",
+      "révèle ses adresses",
+      "les plus privées"
+    ],
+    "subtitle": "Mavericks présente une sélection confidentielle de villas, riads et résidences d'exception, pensées pour une clientèle internationale.",
+    "subtitleEditorial": "Villas, riads et résidences d'exception, sélectionnés avec discrétion pour une clientèle internationale.",
+    "ctaExplore": "Explorer",
+    "ctaEnquire": "Contact privé"
+  },
+
+  "dream": {
+    "eyebrow": "Mavericks",
+    "lines": [
+      "Entre lumière,",
+      "pierre et jardins,",
+      "Mavericks ouvre les portes",
+      "d'un Marrakech plus confidentiel."
+    ]
+  },
+
+  "visualReveal": {
+    "eyebrow": "Mavericks · Marrakech",
+    "caption": "Chaque adresse est un film privé. Nous cadrons, nous sélectionnons, nous ouvrons la porte.",
+    "byline": "Maison Mavericks"
+  },
+
+  "brandStatement": {
+    "eyebrow": "Notre approche",
+    "body": "Mavericks n'a pas vocation à publier tout le marché.\nNotre rôle est de filtrer, qualifier et présenter les opportunités qui ont du sens pour votre recherche."
+  },
+
+  "collection": {
+    "eyebrow": "La Collection",
+    "title": "Une sélection rare, choisie une à une.",
+    "intro": "Chaque adresse Mavericks répond à une exigence d'architecture, d'emplacement et de confidentialité.",
+    "categories": {
+      "villas": {
+        "title": "Villas privées",
+        "description": "Demeures contemporaines et néo-marocaines, à la Palmeraie, Amelkis et au-delà.",
+        "caption": "Architecture, jardin, eau."
+      },
+      "riads": {
+        "title": "Riads confidentiels",
+        "description": "Patios anciens restaurés avec une exigence patrimoniale, au cœur de la Médina.",
+        "caption": "Patios, zellige, lumière filtrée."
+      },
+      "penthouses": {
+        "title": "Penthouses",
+        "description": "Toits-terrasses à l'Hivernage et l'Agdal, vues sur l'Atlas et la Koutoubia.",
+        "caption": "Hauteurs et horizons."
+      },
+      "estates": {
+        "title": "Domaines privés",
+        "description": "Grandes propriétés avec oliveraies, écuries et jardins signés.",
+        "caption": "Vastes terres, signatures rares."
+      },
+      "offMarket": {
+        "title": "Biens privés",
+        "description": "Opportunités parfois non diffusées publiquement, présentées après qualification du projet.",
+        "caption": "Accès confidentiel, sur dossier."
+      }
+    }
+  },
+
+  "architecture": {
+    "eyebrow": "Architecture",
+    "title": "L'atmosphère avant le bien.",
+    "body": "Cours intérieures, arches de pierre, miroirs d'eau, ombres de palmiers — l'architecture de Marrakech est notre point de départ."
+  },
+
+  "lifestyle": {
+    "eyebrow": "Art de vivre",
+    "title": "Vivre Marrakech dans le calme.",
+    "body": "Jardins privés, patios silencieux, vues sur l'Atlas, palmeraies et hospitalité raffinée. Nos adresses sont conçues pour la lenteur."
+  },
+
+  "privateAccess": {
+    "eyebrow": "Biens privés",
+    "title": "Des biens que le marché ne voit pas toujours.",
+    "body": "Certaines opportunités à Marrakech circulent discrètement : villas, appartements, riads ou terrains sélectionnés. Mavericks les présente lorsque le besoin, le budget et le profil d'achat sont cohérents.",
+    "quiet": "Certaines opportunités ne sont pas toujours publiées.\nL'accès commence par une conversation sur votre projet.",
+    "cta": "Accéder aux opportunités privées"
+  },
+
+  "locations": {
+    "eyebrow": "Adresses signature",
+    "title": "Les quartiers que nous connaissons.",
+    "items": {
+      "palmeraie": {
+        "name": "Palmeraie",
+        "description": "Villas privées au cœur de la palmeraie historique."
+      },
+      "hivernage": {
+        "name": "Hivernage",
+        "description": "Boulevards résidentiels, hôtellerie de prestige, proximité Guéliz."
+      },
+      "amelkis": {
+        "name": "Amelkis",
+        "description": "Golf, sécurité et grands jardins, à dix minutes de la Médina."
+      },
+      "ourika": {
+        "name": "Route de l'Ourika",
+        "description": "Domaines avec vues sur l'Atlas, calme absolu."
+      },
+      "medina": {
+        "name": "Médina",
+        "description": "Riads patrimoniaux dans le tissu historique de la ville."
+      },
+      "agdal": {
+        "name": "Agdal",
+        "description": "Adresses résidentielles modernes, jardins royaux à proximité."
+      }
+    }
+  },
+
+  "cinematic": {
+    "close": "Fermer",
+    "menu": {
+      "private": "Biens privés",
+      "offPlan": "Sur plan",
+      "villasRiads": "Villas & Riads",
+      "invest": "Investir",
+      "mavericks": "Mavericks",
+      "contact": "Contact",
+      "tagline": "Immobilier privé à Marrakech",
+      "brandMark": "Mavericks",
+      "private_offMarket": "Off-market",
+      "private_selection": "Sélection privée",
+      "private_confidential": "Accès confidentiel",
+      "offPlan_apartments": "Appartements sur plan",
+      "offPlan_villas": "Villas sur plan",
+      "offPlan_programs": "Programmes sélectionnés",
+      "villasRiads_villas": "Villas existantes",
+      "villasRiads_riads": "Riads",
+      "villasRiads_apartments": "Appartements bien placés"
+    },
+    "territories": {
+      "ariaLabel": "Territoires d'investissement à Marrakech",
+      "eyebrow": "Adresses",
+      "title": "Les territoires d'investissement à Marrakech",
+      "intro": "Chaque adresse raconte un usage, une rareté et un potentiel. Mavericks distingue les quartiers de rendement, les zones patrimoniales et les territoires de prestige à forte désirabilité.",
+      "verticalLabel": "Territoires",
+      "zones": {
+        "palmeraie": {
+          "label": "Palmeraie",
+          "angle": "Villas privées · grands terrains",
+          "tag": "Prestige résidentiel"
+        },
+        "hivernage": {
+          "label": "Hivernage",
+          "angle": "Premium central · forte demande",
+          "tag": "Adresse établie"
+        },
+        "gueliz": {
+          "label": "Guéliz",
+          "angle": "Appartements · rendement urbain",
+          "tag": "Cœur vivant"
+        },
+        "agdal": {
+          "label": "Agdal",
+          "angle": "Résidences modernes · équilibre",
+          "tag": "Confort familial"
+        },
+        "amelkis": {
+          "label": "Amelkis",
+          "angle": "Golf villas · prestige discret",
+          "tag": "Calme sélectif"
+        },
+        "medina": {
+          "label": "Médina",
+          "angle": "Riads · patrimoine vivant",
+          "tag": "Valeur émotionnelle"
+        },
+        "ourika": {
+          "label": "Route de l'Ourika",
+          "angle": "Villas · Atlas · potentiel",
+          "tag": "Horizon long terme"
+        }
+      }
+    },
+    "indicator": {
+      "architecture": "Villas & Riads",
+      "arrival": "Arrivée",
+      "island": "Horizon",
+      "interiors": "Intérieurs"
+    },
+    "popups": {
+      "eyebrow": "Mavericks",
+      "private": {
+        "title": "Des biens que le marché ne voit pas toujours.",
+        "body": "Certaines opportunités à Marrakech circulent discrètement : villas, appartements, riads ou terrains sélectionnés. Mavericks les présente uniquement lorsque le besoin, le budget et le profil d'achat sont cohérents."
+      },
+      "offPlan": {
+        "title": "Acheter sur plan à Marrakech, avec une sélection plus stricte.",
+        "body": "Nous analysons les programmes selon leur emplacement, la qualité du promoteur, la cohérence du prix, le potentiel de valorisation et la rareté des unités disponibles — appartements, villas et résidences privées."
+      },
+      "invest": {
+        "title": "Investir à Marrakech avec une lecture privée du marché.",
+        "body": "Un bon achat ne dépend pas seulement du prix. Il dépend de l'adresse, du timing, de la rareté, de la demande locative et de la qualité de sortie à la revente."
+      },
+      "method": {
+        "title": "Moins de biens. Plus de précision.",
+        "body": "Mavericks n'a pas vocation à publier tout le marché. Notre rôle est de filtrer, qualifier et présenter uniquement les opportunités qui ont du sens pour la recherche du client."
+      },
+      "vision": {
+        "title": "Notre vision",
+        "body": "Mavericks sélectionne des adresses où l'architecture, la lumière et le calme se répondent — loin du bruit du marché public."
+      },
+      "craft": {
+        "title": "Le geste",
+        "body": "Pierre locale, artisans marocains, proportions mesurées : chaque détail est pensé pour durer et pour accueillir."
+      },
+      "legacy": {
+        "title": "L'héritage",
+        "body": "Nous présentons des demeures destinées à traverser les saisons, entre tradition marrakchie et exigence contemporaine."
+      },
+      "collection": {
+        "title": "La sélection",
+        "body": "Villas, riads et appartements choisis avec précision. Certaines opportunités ne sont présentées qu'après un premier échange sur votre projet."
+      },
+      "visit": {
+        "title": "Visite privée",
+        "body": "Planifiez une visite discrète avec notre équipe. Nous adaptons chaque parcours à votre recherche et à votre calendrier."
+      }
+    },
+    "hero": {
+      "aria": "Accueil cinématique Mavericks",
+      "imageAlt": "Vue aérienne de la Villa Peninsula, villas contemporaines et piscines privées",
+      "headlineOne": "Marrakech révélée",
+      "headlineTwo": "Dans sa forme la plus intime"
+    },
+    "architecture": {
+      "aria": "Villas, riads et biens existants",
+      "eyebrow": "Villas & Riads",
+      "title": "Villas, riads et biens existants bien placés.",
+      "imageOneAlt": "Salon contemporain de la Villa Peninsula, baies vitrées et terrasse en pierre",
+      "imageTwoAlt": "Terrasse et piscine privée de la Villa Peninsula, salon extérieur blanc",
+      "imageVillaAlt": "Terrasse et piscine de la Villa Peninsula, architecture contemporaine",
+      "imageAppartementAlt": "Salon et cuisine ouverts, intérieur lumineux de la Villa Peninsula",
+      "imageRiadAlt": "Salon ouvrant sur le jardin, atmosphère marocaine contemporaine",
+      "words": {
+        "villa": "Villa",
+        "appartement": "Appartement",
+        "riad": "Riad"
+      }
+    },
+    "concept": {
+      "aria": "Méthode Mavericks",
+      "eyebrow": "Mavericks",
+      "title": "Moins de biens. Plus de précision.",
+      "body": "Mavericks n'a pas vocation à publier tout le marché. Notre rôle est de filtrer, qualifier et présenter uniquement les opportunités qui ont du sens pour votre recherche — sur plan, existantes ou parfois non diffusées publiquement.",
+      "imageAlt": "Salon ouvert et cuisine de la Villa Peninsula, volumes contemporains et lumière naturelle",
+      "buttons": {
+        "offPlan": "Sur plan",
+        "invest": "Investir",
+        "method": "Notre méthode"
+      }
+    },
+    "lifestyle": {
+      "aria": "Art de vivre et arrivée",
+      "imageAlt": "Terrasse boisée, piscine et salon extérieur de la Villa Peninsula",
+      "blocks": {
+        "arrival": {
+          "eyebrow": "Arrivée",
+          "title": "Le seuil comme promesse",
+          "body": "Portes discrètes, allées ombragées, silence dès l'entrée — l'arrivée annonce déjà la demeure."
+        },
+        "garden": {
+          "eyebrow": "Jardin",
+          "title": "Le calme comme luxe",
+          "body": "Palmiers, bassins miroirs, patios ventilés : nos adresses cultivent la lenteur et la fraîcheur."
+        },
+        "silence": {
+          "eyebrow": "Intimité",
+          "title": "Hors du regard",
+          "body": "Murs hauts, végétation généreuse, espaces pensés pour ne jamais céder à l'exposition."
+        }
+      },
+      "hotspots": {
+        "pool": {
+          "label": "Eau",
+          "title": "Bassin miroir"
+        },
+        "spa": {
+          "label": "Soin",
+          "title": "Hammam privé"
+        },
+        "terrace": {
+          "label": "Ciel",
+          "title": "Terrasse Atlas"
+        }
+      }
+    },
+    "island": {
+      "aria": "Horizon et adresses",
+      "imageAlt": "Vue aérienne panoramique de la Villa Peninsula et de ses jardins",
+      "texts": {
+        "horizon": {
+          "eyebrow": "Horizon",
+          "title": "L'Atlas comme ligne de fuite",
+          "body": "Du patio à la palmeraie, la montagne dessine le tempo de chaque adresse."
+        },
+        "distance": {
+          "eyebrow": "Distance",
+          "title": "Proche, ailleurs",
+          "body": "À dix minutes de la Médina, nos domaines offrent l'illusion d'un ailleurs immédiat."
+        },
+        "arrival": {
+          "eyebrow": "Carte",
+          "title": "Quartiers que nous connaissons",
+          "body": "Palmeraie, Hivernage, Amelkis — chaque nom recouvre une géographie intime."
+        }
+      },
+      "overlay": {
+        "eyebrow": "Adresses",
+        "title": "Les quartiers signature de Mavericks",
+        "body": "Nous ne couvrons que les secteurs que nous habitons vraiment — pour conseiller avec précision."
+      },
+      "locations": {
+        "palmeraie": {
+          "name": "Palmeraie",
+          "description": "Villas privées au cœur de la palmeraie historique."
+        },
+        "hivernage": {
+          "name": "Hivernage",
+          "description": "Boulevards résidentiels et architecture de prestige."
+        },
+        "amelkis": {
+          "name": "Amelkis",
+          "description": "Golf, jardins et résidences sécurisées."
+        }
+      }
+    },
+    "interiors": {
+      "aria": "Intérieurs et matières",
+      "eyebrow": "Intérieurs",
+      "title": "Matières, volumes, lumière.",
+      "options": {
+        "riad": "Riad",
+        "villa": "Villa"
+      },
+      "imageAlt": {
+        "riad": "Grand salon ouvert de la Villa Peninsula, salle à manger et cuisine design",
+        "villa": "Chambre principale de la Villa Peninsula avec vue sur la végétation"
+      },
+      "cards": {
+        "riad": {
+          "eyebrow": "Patrimoine",
+          "title": "Le riad réinventé",
+          "body": "Zellige, tadelakt, boiseries : la tradition marrakchie sublimée par une exigence contemporaine."
+        },
+        "villa": {
+          "eyebrow": "Contemporain",
+          "title": "La villa éditoriale",
+          "body": "Volumes généreux, pierre locale, ouvertures mesurées — l'architecture comme cadre de vie."
+        }
+      }
+    },
+    "growing": {
+      "aria": "Révélation progressive",
+      "eyebrow": "Révélation",
+      "title": "Chaque adresse se dévoile lentement.",
+      "imageAlt": "Salon lumineux de la Villa Peninsula avec cheminée design et terrasse",
+      "buttons": {
+        "collection": "La Collection",
+        "visit": "Visite privée"
+      }
+    },
+    "teasers": {
+      "aria": "Découvrir Mavericks",
+      "brandWord": "Mavericks",
+      "eyebrow": "Suite",
+      "title": "Poursuivre l'exploration",
+      "cards": {
+        "collection": {
+          "eyebrow": "Collection",
+          "title": "Les adresses sélectionnées",
+          "body": "Villas, riads et domaines présentés avec la même exigence éditoriale.",
+          "imageAlt": "Vue aérienne des villas et piscines de la Villa Peninsula",
+          "cta": "Explorer"
+        },
+        "contact": {
+          "eyebrow": "Contact",
+          "title": "Engager une conversation",
+          "body": "Précisez votre recherche. Nous revenons vers vous en toute confidentialité.",
+          "imageAlt": "Chambre privée de la Villa Peninsula, lumière douce et vue verdoyante",
+          "cta": "Nous écrire"
+        }
+      }
+    }
+  },
+
+  "enquiry": {
+    "eyebrow": "Votre projet",
+    "title": "Recevoir une sélection ciblée.",
+    "invitation": "Décrivez votre recherche en toute confidentialité.",
+    "intro": "Précisez le type de bien, votre objectif et votre calendrier. Nous revenons vers vous sous 24 heures, en toute discrétion.",
+    "fields": {
+      "name": "Nom complet",
+      "email": "Adresse e-mail",
+      "whatsapp": "WhatsApp",
+      "country": "Pays",
+      "budget": "Budget",
+      "propertyType": "Type de bien recherché",
+      "objective": "Objectif",
+      "zone": "Zone souhaitée",
+      "timeline": "Délai d'achat",
+      "message": "Critères importants"
+    },
+    "propertyTypes": {
+      "apartment": "Appartement",
+      "villa": "Villa",
+      "riad": "Riad",
+      "offPlan": "Sur plan",
+      "existing": "Bien existant"
+    },
+    "objectives": {
+      "primary": "Résidence principale",
+      "secondary": "Pied-à-terre",
+      "rental": "Investissement locatif",
+      "asset": "Actif patrimonial"
+    },
+    "submit": "Recevoir une sélection ciblée",
+    "consent": "Vos informations sont traitées avec la plus stricte confidentialité."
+  },
+
+  "footer": {
+    "tagline": "Sélection privée d'opportunités immobilières à Marrakech.",
+    "contact": "Contact",
+    "follow": "Nous suivre",
+    "legal": "Mentions légales",
+    "rights": "© {{year}} Mavericks. Tous droits réservés.",
+    "nav": {
+      "home": "Accueil",
+      "private": "Biens privés",
+      "offPlan": "Sur plan",
+      "villasRiads": "Villas & Riads",
+      "invest": "Investir",
+      "mavericks": "Mavericks"
+    }
+  },
+
+  "media": {
+    "hero": {
+      "alt": "Piscine et jardin ensoleillés d'une résidence privée à Marrakech"
+    },
+    "fragments": {
+      "stoneArch": {
+        "alt": "Arcs en pierre ivoire bordant une cour marrakchie baignée de lumière"
+      },
+      "waterMirror": {
+        "alt": "Eau calme d'un bassin reflétant la lumière chaude d'un riad"
+      },
+      "threshold": {
+        "alt": "Porte sculptée d'une adresse privée à Marrakech"
+      },
+      "sunlitPatio": {
+        "alt": "Patio vide baigné de soleil, colonnes de pierre et ombres douces"
+      }
+    },
+    "reveal": {
+      "alt": "Vue large d'une cour de villa marrakchie, arcs et bassin miroir"
+    },
+    "collection": {
+      "villas": {
+        "alt": "Villa privée contemporaine, jardin et façade en pierre chaude à Marrakech"
+      },
+      "riads": {
+        "alt": "Cour de riad restauré avec bassin et lumière filtrée"
+      },
+      "estates": {
+        "alt": "Jardin de domaine, ombres de palmiers et pelouses près de Marrakech"
+      },
+      "penthouses": {
+        "alt": "Terrasse sur les toits de Marrakech, lumière douce du soir"
+      },
+      "offMarket": {
+        "alt": "Détail architectural discret d'une résidence non publiée"
+      }
+    },
+    "locations": {
+      "palmeraie": {
+        "alt": "Palmeraie et jardin privé à Marrakech"
+      },
+      "hivernage": {
+        "alt": "Architecture en pierre chaude à Hivernage, Marrakech"
+      },
+      "amelkis": {
+        "alt": "Jardins soignés et résidence à Amelkis, Marrakech"
+      },
+      "ourika": {
+        "alt": "Lumière des contreforts de l'Atlas depuis un domaine sur la route de l'Ourika"
+      },
+      "medina": {
+        "alt": "Rue de la Médina, enduit ensoleillé et détails sculptés"
+      },
+      "agdal": {
+        "alt": "Jardin résidentiel moderne à Agdal, Marrakech"
+      }
+    }
+  }
+}

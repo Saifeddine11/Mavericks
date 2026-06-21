@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 720" role="img" aria-label="">
+  <defs>
+    <linearGradient id="facade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#E4D8C8"/>
+      <stop offset="100%" stop-color="#C9B9A3"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3A4A52" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#5A6A72" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#2D3A40"/>
+    </linearGradient>
+    <linearGradient id="warmLight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#F5D4A8" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#C89A6A" stop-opacity="0.4"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#D8C7AE" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#B8A894" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <!-- Ground fade -->
+  <rect x="0" y="620" width="1400" height="100" fill="url(#ground)"/>
+  <!-- Main structure -->
+  <rect x="180" y="220" width="1040" height="420" rx="4" fill="url(#facade)"/>
+  <!-- Roof terrace -->
+  <rect x="220" y="180" width="960" height="48" fill="#D2C5B3"/>
+  <rect x="260" y="150" width="880" height="36" fill="#C4B5A0"/>
+  <!-- Glass bands -->
+  <g opacity="0.95">
+    <rect x="220" y="280" width="200" height="300" fill="url(#glass)"/>
+    <rect x="460" y="280" width="200" height="300" fill="url(#glass)"/>
+    <rect x="700" y="280" width="200" height="300" fill="url(#glass)"/>
+    <rect x="940" y="280" width="200" height="300" fill="url(#glass)"/>
+    <rect x="1180" y="280" width="40" height="300" fill="url(#glass)"/>
+  </g>
+  <!-- Warm interior glow -->
+  <g opacity="0.75">
+    <rect x="240" y="320" width="160" height="120" fill="url(#warmLight)" rx="2"/>
+    <rect x="480" y="340" width="160" height="100" fill="url(#warmLight)" rx="2"/>
+    <rect x="720" y="310" width="160" height="130" fill="url(#warmLight)" rx="2"/>
+    <rect x="960" y="350" width="160" height="90" fill="url(#warmLight)" rx="2"/>
+  </g>
+  <!-- Terraces / greenery -->
+  <ellipse cx="350" cy="200" rx="48" ry="28" fill="#5A6B52" opacity="0.85"/>
+  <ellipse cx="700" cy="175" rx="56" ry="32" fill="#4A5E48" opacity="0.9"/>
+  <ellipse cx="1050" cy="195" rx="52" ry="30" fill="#5A6B52" opacity="0.85"/>
+  <rect x="300" y="520" width="800" height="12" fill="#8A9A82" opacity="0.5"/>
+  <!-- Palm accents -->
+  <path d="M120 520 Q130 420 150 380 Q155 450 145 520 Z" fill="#4A5A44" opacity="0.7"/>
+  <path d="M1280 500 Q1290 400 1310 360 Q1315 430 1305 500 Z" fill="#4A5A44" opacity="0.7"/>
+  <!-- Window frames -->
+  <g stroke="#2D2D2D" stroke-width="3" fill="none" opacity="0.35">
+    <line x1="420" y1="280" x2="420" y2="580"/>
+    <line x1="660" y1="280" x2="660" y2="580"/>
+    <line x1="900" y1="280" x2="900" y2="580"/>
+    <line x1="1140" y1="280" x2="1140" y2="580"/>
+  </g>
+</svg>

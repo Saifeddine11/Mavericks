@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-label="">
+  <text
+    x="600"
+    y="155"
+    text-anchor="middle"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="2.5"
+    stroke-linejoin="round"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="118"
+    font-weight="800"
+    letter-spacing="0.06em"
+  >MAVERICKS</text>
+  <text
+    x="600"
+    y="248"
+    text-anchor="middle"
+    fill="none"
+    stroke="#FFFFFF"
+    stroke-width="1.5"
+    stroke-linejoin="round"
+    font-family="Inter, system-ui, sans-serif"
+    font-size="36"
+    font-weight="500"
+    letter-spacing="0.38em"
+  >REAL ESTATE</text>
+</svg>

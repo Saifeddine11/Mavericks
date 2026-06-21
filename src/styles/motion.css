@@ -1,0 +1,7 @@
+/**
+ * Motion tokens — documentation only.
+ * Active motion styles live in src/index.css (hero-v2-*, cinematic-menu-*)
+ * and component-level GSAP / Framer Motion code.
+ *
+ * Do not duplicate animation timing here — see src/styles/tokens.js for JS easings.
+ */

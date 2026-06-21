@@ -1,0 +1,355 @@
+import { useEffect, useRef, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import clsx from 'clsx';
+import { gsap } from '@/lib/gsap';
+
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher';
+import { useCinematic } from './context/CinematicContext';
+import ContentPopup from './shared/ContentPopup';
+import SectionIndicator from './shared/SectionIndicator';
+import { getLangFromPath } from '@/i18n/routing';
+import { DEFAULT_LANGUAGE } from '@/i18n';
+
+/** Expandable groups map to homepage anchors — no new routes */
+const MENU_GROUPS = [
+  {
+    id: 'private',
+    href: '#architecture',
+    expandable: true,
+    children: [
+      { id: 'private_offMarket', href: '#architecture' },
+      { id: 'private_selection', href: '#architecture' },
+      { id: 'private_confidential', href: '#contact' },
+    ],
+  },
+  {
+    id: 'offPlan',
+    href: '#concept',
+    expandable: true,
+    children: [
+      { id: 'offPlan_apartments', href: '#concept' },
+      { id: 'offPlan_villas', href: '#concept' },
+      { id: 'offPlan_programs', href: '#concept' },
+    ],
+  },
+  {
+    id: 'villasRiads',
+    href: '#architecture',
+    expandable: true,
+    children: [
+      { id: 'villasRiads_villas', href: '#architecture' },
+      { id: 'villasRiads_riads', href: '#architecture' },
+      { id: 'villasRiads_apartments', href: '#architecture' },
+    ],
+  },
+  { id: 'invest', href: '#concept', expandable: false },
+  { id: 'mavericks', href: '#concept', expandable: false },
+  { id: 'contact', href: '#contact', expandable: false },
+];
+
+function MenuExpandableItem({ item, t, onNavigate }) {
+  const [open, setOpen] = useState(false);
+  const subRef = useRef(null);
+  const hasChildren = item.expandable && item.children?.length;
+
+  useEffect(() => {
+    const el = subRef.current;
+    if (!el || !hasChildren) return;
+    gsap.to(el, {
+      height: open ? 'auto' : 0,
+      opacity: open ? 1 : 0,
+      duration: 0.45,
+      ease: 'power2.inOut',
+    });
+  }, [open, hasChildren]);
+
+  if (!hasChildren) {
+    return (
+      <li className="cinematic-menu-item border-b border-white/[0.08] py-5 last:border-b-0">
+        <a
+          href={item.href}
+          onClick={onNavigate}
+          className="cinematic-menu-link block font-label uppercase text-stone-brand transition-opacity hover:opacity-100"
+        >
+          {t(`cinematic.menu.${item.id}`)}
+        </a>
+      </li>
+    );
+  }
+
+  return (
+    <li className="cinematic-menu-item border-b border-white/[0.08] py-5 last:border-b-0">
+      <div className="flex items-start justify-between gap-6">
+        <a
+          href={item.href}
+          onClick={onNavigate}
+          className="cinematic-menu-link block flex-1 font-label uppercase text-stone-brand transition-opacity hover:opacity-100"
+        >
+          {t(`cinematic.menu.${item.id}`)}
+        </a>
+        <button
+          type="button"
+          onClick={() => setOpen((v) => !v)}
+          aria-expanded={open}
+          aria-label={open ? 'Réduire' : 'Développer'}
+          className="mt-1 flex size-8 shrink-0 items-center justify-center font-label text-lg leading-none text-stone-brand/75 transition-colors hover:text-stone-brand"
+        >
+          <span className="relative block h-3 w-3">
+            <span className="absolute left-0 top-1/2 h-px w-full -translate-y-1/2 bg-current" />
+            <span
+              className={clsx(
+                'absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-current transition-transform duration-300',
+                open && 'rotate-90 opacity-0',
+              )}
+            />
+          </span>
+        </button>
+      </div>
+      <div ref={subRef} className="h-0 overflow-hidden opacity-0">
+        <ul className="flex flex-col gap-3 pt-5 pl-1">
+          {item.children.map((child) => (
+            <li key={child.id}>
+              <a
+                href={child.href}
+                onClick={onNavigate}
+                className="cinematic-menu-sublink block font-label uppercase text-stone-brand/80 transition-all hover:text-stone-brand hover:underline hover:underline-offset-[6px]"
+              >
+                {t(`cinematic.menu.${child.id}`)}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </li>
+  );
+}
+
+export default function CinematicChrome() {
+  const { t } = useTranslation();
+  const location = useLocation();
+  const lang = getLangFromPath(location.pathname) ?? DEFAULT_LANGUAGE;
+  const {
+    menuOpen,
+    toggleMenu,
+    closeMenu,
+    activePopup,
+    closePopup,
+    headerTheme,
+    activeSection,
+  } = useCinematic();
+
+  const menuRef = useRef(null);
+  const backdropRef = useRef(null);
+  const itemsRef = useRef(null);
+  const [mounted, setMounted] = useState(false);
+  const [indicatorVisible, setIndicatorVisible] = useState(false);
+
+  const handleNavigate = () => closeMenu();
+
+  useEffect(() => {
+    const tmr = window.setTimeout(() => setMounted(true), 600);
+    return () => window.clearTimeout(tmr);
+  }, []);
+
+  useEffect(() => {
+    setIndicatorVisible(activeSection >= 0 && !menuOpen && !activePopup);
+  }, [activeSection, menuOpen, activePopup]);
+
+  useEffect(() => {
+    if (!menuOpen) return undefined;
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape') closeMenu();
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen, closeMenu]);
+
+  useEffect(() => {
+    const menu = menuRef.current;
+    const backdrop = backdropRef.current;
+    const items = itemsRef.current?.querySelectorAll('.cinematic-menu-item');
+    if (!menu || !backdrop) return;
+
+    if (menuOpen) {
+      gsap.set(menu, { visibility: 'visible', pointerEvents: 'auto' });
+      gsap.fromTo(backdrop, { opacity: 0 }, { opacity: 1, duration: 0.4 });
+      gsap.fromTo(menu, { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.55, ease: 'power3.out' });
+      if (items?.length) {
+        gsap.fromTo(
+          items,
+          { opacity: 0, y: 20 },
+          { opacity: 1, y: 0, duration: 0.5, stagger: 0.06, delay: 0.15, ease: 'power2.out' },
+        );
+      }
+    } else {
+      gsap.to(menu, {
+        opacity: 0,
+        x: -16,
+        duration: 0.35,
+        onComplete: () => gsap.set(menu, { visibility: 'hidden', pointerEvents: 'none' }),
+      });
+      gsap.to(backdrop, { opacity: 0, duration: 0.35 });
+    }
+  }, [menuOpen]);
+
+  const isLight = headerTheme === 'light';
+
+  return (
+    <>
+      <div
+        ref={backdropRef}
+        className={clsx(
+          'cinematic-menu-backdrop fixed inset-0 z-50 transition-opacity',
+          menuOpen ? 'pointer-events-auto opacity-100' : 'pointer-events-none opacity-0',
+        )}
+        onClick={closeMenu}
+        aria-hidden="true"
+      />
+
+      <nav className="pointer-events-none fixed inset-x-0 top-0 z-[52] px-5 pt-5 md:px-10 md:pt-7" aria-label={t('chrome.menu')}>
+        <div
+          aria-hidden="true"
+          className={clsx(
+            'pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b to-transparent',
+            isLight
+              ? 'from-dark-red/58 via-dark-red/28'
+              : 'from-stone-brand/85 via-stone-brand/40',
+          )}
+        />
+        <div className="relative grid grid-cols-[1fr_auto_1fr] items-center">
+          <div className="flex justify-start">
+            <div
+              className={clsx(
+                'pointer-events-auto flex items-center overflow-hidden rounded-full border transition-all duration-500',
+                mounted ? 'translate-y-0 opacity-100' : '-translate-y-2 opacity-0',
+                menuOpen
+                  ? 'border-stone-brand/20 bg-dark-red/50'
+                  : isLight
+                    ? 'border-stone-brand/20 bg-dark-red/48'
+                    : 'border-dark-red/12 bg-stone-brand/88',
+              )}
+            >
+              <button
+                type="button"
+                onClick={toggleMenu}
+                aria-expanded={menuOpen}
+                className={clsx(
+                  'px-4 py-2.5 font-label text-[11px] uppercase tracking-[0.18em] transition-colors md:px-5',
+                  isLight ? 'text-stone-brand [text-shadow:0_1px_10px_rgba(39,7,7,0.45)]' : 'text-dark-red',
+                )}
+              >
+                {t('chrome.menu')}
+              </button>
+              <a
+                href="#contact"
+                className={clsx(
+                  'group relative hidden overflow-hidden rounded-full px-5 py-2.5 font-label text-[11px] uppercase tracking-[0.18em] md:block',
+                  'bg-champagne text-dark-red transition-colors duration-300 hover:bg-champagne-light',
+                )}
+              >
+                <span className="relative z-10">{t('chrome.enquire')}</span>
+              </a>
+            </div>
+          </div>
+
+          <Link
+            to={defaultLangPath(lang)}
+            className={clsx(
+              'pointer-events-auto relative justify-self-center transition-opacity duration-300',
+              mounted ? 'opacity-100' : 'opacity-0',
+            )}
+            aria-label="Mavericks"
+          >
+            <img
+              src="/logos/mavericks-outline.svg"
+              alt=""
+              className={clsx(
+                'h-7 w-auto opacity-90 md:h-9',
+                isLight
+                  ? 'brightness-0 invert drop-shadow-[0_2px_16px_rgba(39,7,7,0.55)]'
+                  : 'brightness-0 drop-shadow-[0_2px_12px_rgba(241,235,235,0.45)]',
+              )}
+            />
+          </Link>
+
+          <div className="flex items-center justify-end gap-3">
+            <button
+              type="button"
+              onClick={activePopup ? closePopup : undefined}
+              className={clsx(
+                'pointer-events-auto flex items-center gap-2 rounded-full px-4 py-2 font-label text-[11px] uppercase tracking-[0.14em] transition-all duration-300',
+                activePopup
+                  ? 'translate-y-0 bg-stone-brand text-dark-red opacity-100'
+                  : 'pointer-events-none translate-y-2 opacity-0',
+              )}
+            >
+              {t('cinematic.close')}
+              <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M1 12.8L12.8 1" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+                <path d="M1 1.4L12.8 13.2" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+              </svg>
+            </button>
+            <div
+              className={clsx(
+                'pointer-events-auto transition-opacity duration-500',
+                mounted ? 'opacity-100' : 'opacity-0',
+              )}
+            >
+              <LanguageSwitcher variant="compact" tone={isLight ? 'onDark' : 'onLight'} />
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <div
+        ref={menuRef}
+        className="cinematic-menu-panel invisible fixed z-[51] flex flex-col opacity-0"
+        data-lenis-prevent
+        role="dialog"
+        aria-modal="true"
+        aria-label={t('chrome.menu')}
+      >
+        <div className="flex shrink-0 items-center gap-3 border-b border-white/[0.1] px-6 pb-5 pt-6 md:px-8 md:pt-8">
+          <button
+            type="button"
+            onClick={closeMenu}
+            aria-label={t('nav.close')}
+            className="flex size-10 shrink-0 items-center justify-center rounded-full border border-white/15 text-xl leading-none text-stone-brand/90 transition-colors hover:border-white/25 hover:text-stone-brand"
+          >
+            ×
+          </button>
+          <a
+            href="#contact"
+            onClick={handleNavigate}
+            className="cinematic-menu-cta-pill inline-flex min-h-10 items-center rounded-full bg-champagne px-5 py-2.5 font-label text-[10px] uppercase tracking-[0.22em] text-dark-red transition-colors hover:bg-champagne-light md:text-[11px]"
+          >
+            {t('chrome.enquire')}
+          </a>
+        </div>
+
+        <nav className="min-h-0 flex-1 overflow-y-auto px-6 py-2 md:px-8 md:py-4">
+          <ul ref={itemsRef} className="flex flex-col">
+            {MENU_GROUPS.map((item) => (
+              <MenuExpandableItem key={item.id} item={item} t={t} onNavigate={handleNavigate} />
+            ))}
+          </ul>
+        </nav>
+
+        <div className="shrink-0 border-t border-white/[0.1] px-6 py-6 md:px-8 md:py-8">
+          <p className="font-label text-[11px] uppercase tracking-[0.28em] text-stone-brand/90">
+            {t('cinematic.menu.brandMark')}
+          </p>
+          <p className="mt-2 font-body text-sm text-stone-brand/55">{t('cinematic.menu.tagline')}</p>
+        </div>
+      </div>
+
+      <SectionIndicator visible={indicatorVisible} />
+      <ContentPopup />
+    </>
+  );
+}
+
+function defaultLangPath(lang) {
+  return `/${lang}`;
+}

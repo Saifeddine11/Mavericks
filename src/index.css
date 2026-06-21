@@ -1,0 +1,261 @@
+/* OffMarket — global stylesheet */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Questrial&family=Tenor+Sans&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --color-text: theme(colors.dark-red);
+    --color-text-muted: theme(colors.graphite);
+    --color-bg: theme(colors.stone-brand);
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  body {
+    @apply bg-stone-brand font-body text-dark-red;
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    @apply font-editorial text-dark-red;
+  }
+
+  p,
+  li,
+  a,
+  button,
+  input,
+  textarea,
+  select {
+    @apply font-body;
+  }
+
+  *:focus-visible {
+    @apply outline-none ring-2 ring-champagne ring-offset-2 ring-offset-stone-brand;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: theme(colors.champagne-light);
+    color: theme(colors.dark-red);
+  }
+
+  button {
+    @apply cursor-pointer bg-transparent text-inherit;
+  }
+
+  a {
+    @apply text-inherit no-underline;
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply font-label text-eyebrow uppercase tracking-widest text-graphite;
+  }
+
+  .container-editorial {
+    @apply mx-auto w-full max-w-wide px-6 md:px-10 lg:px-16;
+  }
+
+  .cinematic-img {
+    @apply object-cover;
+  }
+
+  /* ScrollScrubHeroV2 — responsive media + safe areas */
+  .hero-v2-media {
+    @apply absolute inset-0 h-full w-full object-cover;
+    object-position: center 42%;
+  }
+
+  @media (min-width: 640px) {
+    .hero-v2-media {
+      object-position: center center;
+    }
+  }
+
+  .hero-v2-safe-x {
+    padding-left: max(1rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1rem, env(safe-area-inset-right, 0px));
+  }
+
+  .hero-v2-safe-bottom {
+    padding-bottom: max(1.25rem, env(safe-area-inset-bottom, 0px));
+  }
+
+  .hero-v2-title-primary {
+    @apply font-editorial uppercase leading-[0.94];
+    font-size: clamp(2rem, 5.5vw + 0.5rem, 7.5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .hero-v2-title-chapter {
+    @apply font-editorial uppercase leading-[0.96];
+    font-size: clamp(1.5rem, 3.8vw + 0.4rem, 5rem);
+    letter-spacing: -0.04em;
+  }
+
+  .hero-v2-subline {
+    @apply mx-auto max-w-xl font-body font-light;
+    font-size: clamp(0.875rem, 1.2vw + 0.5rem, 1.125rem);
+    line-height: 1.55;
+  }
+
+  .hero-v2-text-stage {
+    padding: clamp(1.25rem, 4vw, 2.5rem) clamp(0.75rem, 3vw, 1.5rem);
+  }
+
+  .hero-v2-read-veil {
+    pointer-events: none;
+    position: absolute;
+    inset: -14% -10%;
+    border-radius: 9999px;
+    transition: opacity 0.35s ease, background 0.35s ease;
+  }
+
+  @media (max-width: 767px) {
+    .hero-v2-read-veil {
+      inset: -22% -14%;
+    }
+  }
+
+  .hero-v2-theme-lightText .hero-v2-title-primary,
+  .hero-v2-theme-lightText .hero-v2-title-chapter {
+    @apply text-stone-brand;
+    text-shadow:
+      0 2px 24px rgba(39, 7, 7, 0.58),
+      0 1px 4px rgba(39, 7, 7, 0.42);
+  }
+
+  .hero-v2-theme-lightText .hero-v2-subline {
+    @apply text-stone-brand;
+    opacity: 0.92;
+    text-shadow: 0 1px 12px rgba(39, 7, 7, 0.45);
+  }
+
+  .hero-v2-theme-darkText .hero-v2-title-primary,
+  .hero-v2-theme-darkText .hero-v2-title-chapter {
+    @apply text-dark-red;
+    text-shadow:
+      0 1px 16px rgba(241, 235, 235, 0.55),
+      0 1px 3px rgba(255, 255, 255, 0.35);
+  }
+
+  .hero-v2-theme-darkText .hero-v2-subline {
+    @apply text-graphite;
+    opacity: 0.94;
+    text-shadow: 0 1px 10px rgba(241, 235, 235, 0.4);
+  }
+
+  .hero-v2-cta-primary {
+    @apply inline-flex min-h-12 min-w-[11rem] items-center justify-center border border-champagne bg-dark-red/35 px-6 py-3.5 font-body uppercase text-stone-brand transition-colors duration-300 hover:bg-champagne hover:text-dark-red focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne sm:min-h-[3.25rem] sm:px-8 sm:py-4;
+    font-size: clamp(0.625rem, 0.5vw + 0.55rem, 0.72rem);
+    letter-spacing: 0.2em;
+    text-shadow: 0 1px 8px rgba(39, 7, 7, 0.35);
+  }
+
+  @media (min-width: 640px) {
+    .hero-v2-cta-primary {
+      letter-spacing: 0.32em;
+    }
+  }
+
+  .hero-v2-cta-secondary {
+    @apply inline-flex min-h-11 items-center justify-center font-body uppercase text-stone-brand underline-offset-[10px] transition-colors hover:text-champagne-light hover:underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-champagne;
+    font-size: clamp(0.625rem, 0.5vw + 0.55rem, 0.72rem);
+    letter-spacing: 0.18em;
+    opacity: 0.92;
+    text-shadow: 0 1px 10px rgba(39, 7, 7, 0.4);
+  }
+}
+
+@layer utilities {
+  .sr-readable {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* Cinematic menu — Amali-style left glass panel */
+.cinematic-menu-backdrop {
+  background: rgba(12, 8, 7, 0.42);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.cinematic-menu-panel {
+  left: 12px;
+  top: 12px;
+  width: calc(100vw - 24px);
+  height: calc(100dvh - 24px);
+  max-height: calc(100svh - 24px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: linear-gradient(135deg, rgba(58, 37, 32, 0.78), rgba(34, 22, 20, 0.76));
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.35);
+}
+
+.cinematic-menu-link {
+  font-size: clamp(1.75rem, 4.2vw, 2.75rem);
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+}
+
+.cinematic-menu-sublink {
+  font-size: clamp(0.625rem, 1.6vw, 0.75rem);
+  letter-spacing: 0.18em;
+  line-height: 1.35;
+}
+
+@media (min-width: 768px) {
+  .cinematic-menu-panel {
+    left: 32px;
+    top: 16px;
+    width: min(38vw, 620px);
+    height: calc(100dvh - 32px);
+    max-height: calc(100svh - 32px);
+    border-radius: 28px;
+  }
+
+  .cinematic-menu-link {
+    font-size: clamp(2.25rem, 2.8vw, 3.25rem);
+    letter-spacing: 0.12em;
+    line-height: 1.22;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,22 @@
+/**
+ * Color tokens — CSS mirror of src/config/brand.js
+ * Single source of truth for hex values: brand.js + tailwind.config.js
+ * This file documents CSS custom properties for future use.
+ */
+
+:root {
+  /* Brand palette */
+  --mavericks-stone: #f1ebeb;
+  --mavericks-deep-red: #660810;
+  --mavericks-dark-red: #270707;
+  --mavericks-grey-orange: #d6c0b1;
+  --mavericks-champagne: #b88a5a;
+  --mavericks-champagne-light: #c49a6c;
+  --mavericks-graphite: #2e3430;
+  --mavericks-white: #ffffff;
+
+  /* Semantic */
+  --color-text: var(--mavericks-dark-red);
+  --color-text-muted: var(--mavericks-graphite);
+  --color-bg: var(--mavericks-stone);
+}
